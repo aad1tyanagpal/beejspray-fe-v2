@@ -51,6 +51,9 @@
 .marquee-track {
   animation: marquee 28s linear infinite;
   white-space: nowrap;
+  will-change: transform;
+  display: flex;
+  align-items: center;
 }
 .marquee-wrapper:hover .marquee-track {
   animation-play-state: paused;

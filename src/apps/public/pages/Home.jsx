@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronLeft, ChevronRight, ChevronDown, ShoppingCart, Heart, Star, Tag, BadgeCheck, Truck, Wallet } from 'lucide-react'
 import { C, T } from '../theme'
@@ -412,9 +412,51 @@ const heroSlides = [
 
 export default function Home() {
   const navigate = useNavigate()
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const [wishlist, setWishlist]         = useState(new Set())
+  const [currentSlide, setCurrentSlide]   = useState(0)
+  const [wishlist, setWishlist]           = useState(new Set())
   const [selectedSizes, setSelectedSizes] = useState({})
+
+  const brandTrackRef = useRef(null)
+const brandFirstRef = useRef(null)
+const brandAnimRef  = useRef(null)
+const [brandPaused,setBrandPaused] = useState(false)
+
+  useEffect(() => {
+
+  const track = brandTrackRef.current
+  const first = brandFirstRef.current
+  if(!track || !first) return
+
+  let width = first.offsetWidth
+  let pos = 0
+  const speed = 0.5
+
+  const step = () => {
+
+    if(!brandPaused){
+      pos += speed
+
+      if(pos >= width){
+        pos = 0
+      }
+
+      track.style.transform = `translateX(-${pos}px)`
+    }
+
+    brandAnimRef.current = requestAnimationFrame(step)
+  }
+
+  brandAnimRef.current = requestAnimationFrame(step)
+
+  const resize = () => width = first.offsetWidth
+  window.addEventListener('resize',resize)
+
+  return () => {
+    cancelAnimationFrame(brandAnimRef.current)
+    window.removeEventListener('resize',resize)
+  }
+
+},[])
 
   useEffect(() => {
     const t = setInterval(() => setCurrentSlide(p => (p + 1) % heroSlides.length), 5000)
@@ -597,44 +639,56 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Shop by Brand */}
-      <div className={T.sectionGreen}>
-        <SectionHeader title="Shop by Brand" onViewAll={() => navigate('/brands')} />
-        <style>{`
-          @keyframes brandScroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .brand-track {
-            animation: brandScroll 10s linear infinite;
-            white-space: nowrap;
-          }
-          .brand-wrapper:hover .brand-track {
-            animation-play-state: paused;
-          }
-        `}</style>
-        <div className="brand-wrapper overflow-hidden">
-          <div className="brand-track flex items-center gap-4">
-            {[0, 1].map(copy => (
-              <div key={copy} className="flex items-center gap-4 flex-shrink-0">
-                {brands.map((brand, i) => (
-                  <button
-                    key={i}
-                    onClick={() => navigate(`/brand/${brand.name.toLowerCase().replace(/\s+/g, '-')}`)}
-                    className="flex-shrink-0 h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center transition-all duration-200 group"
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = C.primary; e.currentTarget.style.backgroundColor = '#fff' }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = '#F3F4F6'; e.currentTarget.style.backgroundColor = '#F9FAFB' }}
-                  >
-                    <span className="text-sm font-bold text-gray-400 group-hover:text-gray-800 transition-colors tracking-wide uppercase whitespace-nowrap">
-                      {brand.name}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            ))}
-          </div>
+        {/* Shop by Brand */}
+<div className={T.sectionGreen}>
+  <SectionHeader title="Shop by Brand" onViewAll={() => navigate('/brands')} />
+
+  <div
+  className="overflow-x-auto md:overflow-hidden scrollbar-hide"
+    onMouseEnter={() => setBrandPaused(true)}
+    onMouseLeave={() => setBrandPaused(false)}
+    onTouchStart={() => setBrandPaused(true)}
+    onTouchEnd={() => setBrandPaused(false)}
+  >
+    <div
+      ref={brandTrackRef}
+      className="flex items-center gap-4 w-max"
+      style={{
+        whiteSpace: 'nowrap',
+        willChange: 'transform',
+        touchAction:'pan-x'
+      }}
+    >
+      {[0,1,2].map(copy => (
+        <div
+          key={copy}
+          ref={copy === 0 ? brandFirstRef : null}
+          className="flex items-center gap-4 flex-shrink-0 pr-4"
+        >
+          {brands.map((brand,i) => (
+            <button
+              key={i}
+              onClick={() => navigate(`/brand/${brand.name.toLowerCase().replace(/\s+/g,'-')}`)}
+              className="flex-shrink-0 h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center transition-all duration-200 group"
+              onMouseEnter={e=>{
+                e.currentTarget.style.borderColor=C.primary
+                e.currentTarget.style.backgroundColor='#fff'
+              }}
+              onMouseLeave={e=>{
+                e.currentTarget.style.borderColor='#F3F4F6'
+                e.currentTarget.style.backgroundColor='#F9FAFB'
+              }}
+            >
+              <span className="text-sm font-bold text-gray-400 group-hover:text-gray-800 transition-colors tracking-wide uppercase whitespace-nowrap">
+                {brand.name}
+              </span>
+            </button>
+          ))}
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+</div>
 
           {/* Recently Viewed */}
       <div className={T.sectionWhite}>

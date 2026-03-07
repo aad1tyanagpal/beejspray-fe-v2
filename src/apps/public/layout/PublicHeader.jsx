@@ -75,8 +75,58 @@ export default function PublicHeader() {
   const [showAddressModal, setShowAddressModal] = useState(false)
   const [selectedAddress, setSelectedAddress]   = useState(0)
   const [pincode, setPincode]               = useState('')
-  const langRef        = useRef(null)
-  const recognitionRef = useRef(null)
+  const langRef          = useRef(null)
+  const recognitionRef   = useRef(null)
+  const marqueeRef       = useRef(null)
+  const marqueeFirstRef  = useRef(null)
+  const marqueeAnimRef   = useRef(null)
+
+  useEffect(() => {
+    const track = marqueeRef.current
+    const firstCopy = marqueeFirstRef.current
+    if (!track || !firstCopy) return
+
+    const speed = 0.6 // pixels per frame
+    let copyWidth = 0
+
+const updateWidth = () => {
+  copyWidth = firstCopy.offsetWidth
+}
+
+updateWidth()
+window.addEventListener("resize", updateWidth)
+    let currentX = 0
+    let paused = false
+
+    const step = () => {
+      if (!paused) {
+        currentX += speed
+
+        if (currentX >= copyWidth) {
+          currentX = 0
+        }
+
+        track.style.transform = `translateX(-${currentX}px)`
+      }
+
+      marqueeAnimRef.current = requestAnimationFrame(step)
+    }
+
+    marqueeAnimRef.current = requestAnimationFrame(step)
+
+    const pause  = () => { paused = true }
+    const resume = () => { paused = false }
+
+    track.parentElement.addEventListener('mouseenter', pause)
+    track.parentElement.addEventListener('mouseleave', resume)
+
+    return () => {
+      cancelAnimationFrame(marqueeAnimRef.current)
+      track.parentElement?.removeEventListener('mouseenter', pause)
+      track.parentElement?.removeEventListener('mouseleave', resume)
+      window.removeEventListener("resize", updateWidth)
+    }
+  }, [])
 
   useEffect(() => {
     const handler = (e) => {
@@ -114,22 +164,22 @@ export default function PublicHeader() {
     <div className="w-full font-sans">
 
       {/* ── Marquee Banner ── */}
-      <div className="marquee-wrapper w-full h-8 overflow-hidden flex items-center" style={{ backgroundColor: C.primary }}>
-        <div className="marquee-track flex items-center gap-16 px-4">
-          {[0, 1].map(copy => (
-            <div key={copy} className="flex items-center gap-16 flex-shrink-0">
-              {marqueeItems.map((item, i) => (
-                <span key={i} className="flex items-center gap-16">
-                  <a href={item.href} className="text-white/90 text-xs font-medium whitespace-nowrap tracking-wide hover:underline underline-offset-2">
-                    {item.text}
-                  </a>
-                  <span className="text-white/25 text-xs">✦</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
+      <div className="w-full h-8 overflow-hidden flex items-center" style={{ backgroundColor: C.primary }}>
+  <div ref={marqueeRef} className="flex items-center will-change-transform" style={{ whiteSpace: 'nowrap' }}>
+    {[0, 1,2].map(copy => (
+      <div key={copy} ref={copy === 0 ? marqueeFirstRef : null} className="flex items-center flex-shrink-0" style={{ gap: '1rem', paddingRight: '1rem' }}>
+        {marqueeItems.map((item, i) => (
+          <span key={i} className="flex items-center" style={{ gap: '1rem' }}>
+            <a href={item.href} className="text-white/90 text-xs font-medium whitespace-nowrap tracking-wide hover:underline underline-offset-2">
+              {item.text}
+            </a>
+            <span className="text-white/25 text-xs">✦</span>
+          </span>
+        ))}
       </div>
+    ))}
+  </div>
+</div>
 
       {/* ── Main Header ── */}
       <div
@@ -196,22 +246,32 @@ export default function PublicHeader() {
 
           {/* Delivery Location */}
           <button
-            onClick={() => setShowAddressModal(true)}
-            className="hidden lg:flex items-center gap-1 px-1.5 py-1.5 rounded-lg hover:bg-gray-50 transition-colors flex-shrink-0"
-          >
-            <MapPin size={16} style={{ color: C.primary }} className="flex-shrink-0" />
-            <div className="text-left">
-              <div className="text-[11px] leading-none mb-0.5" style={{ color: C.headerNavHover }}>
-                Delivering to {addr.name.split(' ')[0]}
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="text-[13px] font-bold leading-none" style={{ color: C.headerNavText }}>
-                  {addr.city} {addr.pin}
-                </span>
-                <ChevronDown size={10} style={{ color: C.headerNavHover }} />
-              </div>
-            </div>
-          </button>
+  onClick={() => setShowAddressModal(true)}
+  className="hidden lg:flex items-center gap-1 px-1.5 py-1.5 rounded-lg hover:bg-white/10 transition-colors flex-shrink-0 group"
+  onMouseEnter={e => {
+    e.currentTarget.style.backgroundColor = C.white
+    e.currentTarget.querySelectorAll('[data-hover-text]').forEach(el => el.style.color = C.primary)
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.backgroundColor = 'transparent'
+    e.currentTarget.querySelector('[data-hover-text="top"]').style.color = C.headerNavHover
+    e.currentTarget.querySelector('[data-hover-text="bottom"]').style.color = C.headerNavText
+    e.currentTarget.querySelector('[data-hover-text="chevron"]').style.color = C.headerNavHover
+  }}
+>
+  <MapPin size={16} style={{ color: C.primary }} className="flex-shrink-0" />
+  <div className="text-left">
+    <div data-hover-text="top" className="text-[11px] leading-none mb-0.5" style={{ color: C.headerNavHover }}>
+      Delivering to {addr.name.split(' ')[0]}
+    </div>
+    <div className="flex items-center gap-1">
+      <span data-hover-text="bottom" className="text-[13px] font-bold leading-none" style={{ color: C.headerNavText }}>
+        {addr.city} {addr.pin}
+      </span>
+      <ChevronDown data-hover-text="chevron" size={10} style={{ color: C.headerNavHover }} />
+    </div>
+  </div>
+</button>
 
  </div>{/* ── end mobile row 1 ── */}
 
@@ -382,12 +442,12 @@ export default function PublicHeader() {
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-              <span className="text-[18px] font-bold" style={{ color: C.gray900 }}>Choose your location</span>
+              <span className="text-[18px] font-bold text-gray-900 leading-tight" style={{ color: '#111827' }}>Choose your location</span>
               <button onClick={() => setShowAddressModal(false)} className="text-gray-400 hover:text-gray-700 text-2xl leading-none">&times;</button>
             </div>
 
             <div className="px-6 pt-3 pb-2">
-              <p className="text-[13px] leading-relaxed" style={{ color: C.gray400 }}>
+              <p className="text-[13px] leading-relaxed text-gray-500">
                 Select a delivery location to see product availability and delivery options
               </p>
             </div>
@@ -405,12 +465,12 @@ export default function PublicHeader() {
                   }}
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[14px] font-bold" style={{ color: C.gray900 }}>{a.name}</span>
+                    <span className="text-[14px] font-bold text-gray-900">{a.name}</span>
                     {a.isDefault && (
                       <span className="text-[9px] font-bold text-white px-1.5 py-0.5 rounded" style={{ backgroundColor: C.primary }}>DEFAULT</span>
                     )}
                   </div>
-                  <p className="text-[13px] leading-snug" style={{ color: C.gray400 }}>
+                  <p className="text-[13px] leading-snug text-gray-500">
                     {a.address}, {a.city}, {a.state} {a.pin}
                   </p>
                 </button>
