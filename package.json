@@ -1,0 +1,49 @@
+{
+  "name": "agrotech_fe",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "deploy:public": "cross-env VITE_BASE_PATH=/https://github.com/aad1tyanagpal/beejspray-fe/ vite build --mode public && gh-pages -d dist/public",
+    "deploy:seller": "cross-env VITE_BASE_PATH=/https://github.com/aad1tyanagpal/beejspray-fe/seller/ vite build --mode seller && gh-pages -d dist/seller -e seller",
+    "deploy:admin": "cross-env VITE_BASE_PATH=/https://github.com/aad1tyanagpal/beejspray-fe/admin/ vite build --mode admin && gh-pages -d dist/admin -e admin",
+    "dev": "concurrently \"npm run dev:public\" \"npm run dev:seller\" \"npm run dev:admin\"",
+    "dev:public": "vite --mode public",
+    "dev:seller": "vite --mode seller",
+    "dev:admin": "vite --mode admin",
+    "build": "vite build --mode public && vite build --mode seller && vite build --mode admin",
+    "build:public": "vite build --mode public",
+    "build:seller": "vite build --mode seller",
+    "build:admin": "vite build --mode admin",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "@tailwindcss/postcss": "^4.2.1",
+    "axios": "^1.13.4",
+    "concurrently": "^9.2.1",
+    "lucide-react": "^0.511.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.13.0",
+    "recharts": "^3.7.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.21",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "gh-pages": "^6.3.0",
+    "globals": "^16.5.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11",
+    "vite": "^7.2.4"
+  }
+}

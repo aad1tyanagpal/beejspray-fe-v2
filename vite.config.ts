@@ -1,0 +1,85 @@
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
+// // import react from '@vitejs/plugin-react'
+// import { tamaguiPlugin } from '@tamagui/vite-plugin'
+// import path from 'path'
+
+// export default defineConfig({
+//   resolve: {
+//     alias: {
+//       '@': path.resolve(__dirname, 'src'),
+//     },
+//   },
+//   plugins: [
+//     react(),
+//     tamaguiPlugin({
+//       config: './tamagui.config.ts',
+//       components: ['tamagui'],
+//     }),
+//   ]
+// })
+
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+const appConfigs = {
+  public: {
+    entry: 'index.html',
+    outDir: 'dist/public',
+    port: 5173,
+  },
+  seller: {
+    entry: 'seller.html',
+    outDir: 'dist/seller',
+    port: 5174,
+  },
+  admin: {
+    entry: 'admin.html',
+    outDir: 'dist/admin',
+    port: 5175,
+  },
+}
+
+export default defineConfig(({ mode }) => {
+  const appTarget = mode in appConfigs ? mode : 'public'
+  const current = appConfigs[appTarget as keyof typeof appConfigs]
+
+  return {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      },
+    },
+    plugins: [
+      react(),
+      {
+        name: 'html-entry-rewrite',
+        configureServer(server) {
+          server.middlewares.use((req, _res, next) => {
+            // if (appTarget !== 'public' && req.url === '/') {
+            //   req.url = `/${current.entry}`
+            // }
+            if (
+              !req.url?.includes('.') &&   // not file (js/css/png)
+              !req.url?.startsWith('/@')   // vite internal
+            ) {
+              req.url = `/${current.entry}`
+            }
+            next()
+          })
+        },
+      },
+    ],
+    server: {
+      port: current.port,
+    },
+    base: process.env.VITE_BASE_PATH || '/',
+    build: {
+      outDir: current.outDir,
+      rollupOptions: {
+        input: path.resolve(__dirname, current.entry),
+      },
+    },
+  }
+})
