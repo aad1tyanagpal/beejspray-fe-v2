@@ -4,14 +4,7 @@ import { ChevronLeft, ChevronRight, ChevronDown, ShoppingCart, Heart, Star, Tag,
 import { C, T } from '../theme'
 
 
-// ─── Scroll Animation Hook ────────────────────────────────────
-function useScrollAnimation() {}
-
 // ─── Data ─────────────────────────────────────────────────────
-// ─── Reliable Unsplash agricultural image helper ───────────────
-// Format: https://images.unsplash.com/photo-{ID}?auto=format&fit=crop&w={W}&h={H}&q=80
-// All IDs below are verified agri-specific photos
-
 const IMG = {
   // ── Seeds ──────────────────────────────────────────────────
   tomatoSeeds:    'https://images.unsplash.com/photo-1592838064575-70ed626d3a0e?auto=format&fit=crop&w=300&h=300&q=80',
@@ -53,7 +46,6 @@ const IMG = {
   adBanner3:      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&h=300&q=80',
   adBanner4:      'https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?auto=format&fit=crop&w=400&h=300&q=80',
 }
-
 
 const trendingProducts = [
   { id: 1, brand: 'Syngenta',  name: 'Tomato Saho Hybrid Seeds',         rating: 4.2, reviews: 342,  boughtLastMonth: 128, price: 580,   mrp: 680,   discount: '15%', sizes: ['10g', '50g', '100g'],     img: IMG.tomatoSeeds },
@@ -127,54 +119,32 @@ const crops = [
 ]
 
 const brands = [
-  { name: 'Bayer' },
-  { name: 'Syngenta' },
-  { name: 'BASF' },
-  { name: 'UPL' },
-  { name: 'Multiplex' },
-  { name: 'FMC' },
-  { name: 'Sudarshan' },
-  { name: 'ADAMA' },
-  { name: 'Ichiban' },
-  { name: 'Ramcides' },
-  { name: 'I I L' },
-  { name: 'Sawal' },
-  { name: 'P.I.' },
-  { name: 'Shriram Chemical' },
-  { name: 'Uttam' },
-  { name: 'Parijat' },
-  { name: 'Best Agro' },
-  { name: 'JU' },
-  { name: 'Tropical' },
-  { name: 'CCI' },
-  { name: 'Gharda' },
-  { name: 'Corteva' },
-  { name: 'Clause' },
-  { name: 'Mahyco' },
-  { name: 'Rasi' },
-  { name: 'Nuziveedu' },
-  { name: 'Dhanya Seed' },
-  { name: 'Ankur' },
-  { name: 'Ajit' },
-  { name: 'Crystal' },
-  { name: 'Advanta' },
-  { name: 'Nirmal' },
+  { name: 'Bayer' }, { name: 'Syngenta' }, { name: 'BASF' }, { name: 'UPL' },
+  { name: 'Multiplex' }, { name: 'FMC' }, { name: 'Sudarshan' }, { name: 'ADAMA' },
+  { name: 'Ichiban' }, { name: 'Ramcides' }, { name: 'I I L' }, { name: 'Sawal' },
+  { name: 'P.I.' }, { name: 'Shriram Chemical' }, { name: 'Uttam' }, { name: 'Parijat' },
+  { name: 'Best Agro' }, { name: 'JU' }, { name: 'Tropical' }, { name: 'CCI' },
+  { name: 'Gharda' }, { name: 'Corteva' }, { name: 'Clause' }, { name: 'Mahyco' },
+  { name: 'Rasi' }, { name: 'Nuziveedu' }, { name: 'Dhanya Seed' }, { name: 'Ankur' },
+  { name: 'Ajit' }, { name: 'Crystal' }, { name: 'Advanta' }, { name: 'Nirmal' },
 ]
 
-const trustBadges = [
-  { emoji: '🚚', title: 'Free Delivery',     sub: 'Orders above ₹2000' },
-  { emoji: '💰', title: 'Cash on Delivery',  sub: 'Available pan-India' },
-  { emoji: '↩',  title: 'Easy Returns',      sub: '7 day return policy' },
-  { emoji: '✔',  title: '100% Genuine',      sub: 'Certified products only' },
+const heroSlides = [
+  { img: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1440&h=500&q=85', title: 'Better Yields,\nSmarter Solutions',  subtitle: 'Get up to 40% off on premium seeds and fertilizers this season.', cta: 'Shop Now'        },
+  { img: 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1440&h=500&q=85', title: 'Rabi Season\nEssentials',            subtitle: 'Premium wheat, mustard & gram seeds — delivered to your doorstep.', cta: 'Explore Seeds'  },
+  { img: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=1440&h=400&fit=crop',                  title: 'Go Organic,\nGrow Healthy',          subtitle: 'Certified organic fertilizers and bio-pesticides now available.',  cta: 'Shop Organic'   },
+  { img: 'https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?auto=format&fit=crop&w=1440&h=500&q=85', title: 'Smart Spraying,\nBetter Results',    subtitle: 'Top-rated sprayers & equipment at unbeatable prices.',             cta: 'Shop Equipment' },
+  { img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1440&h=500&q=85',    title: 'Feed Your Crops\nRight',             subtitle: 'Premium fertilizers for maximum yield this season.',               cta: 'Shop Fertilizers'},
+  { img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1440&h=500&q=85', title: 'Protect Your\nHarvest',              subtitle: 'Certified pesticides & fungicides from trusted brands.',           cta: 'Shop Now'        },
 ]
 
 // ─── Sub Components ───────────────────────────────────────────
+
 function SectionHeader({ title, onViewAll, dark = false }) {
   return (
     <div className="flex items-center justify-between mb-5 gap-3">
       <div className="flex items-center gap-3 min-w-0">
-        <div className="flex-shrink-0 w-1 h-6 rounded-full" style={{ backgroundColor: dark ? '#FFD580' : C.primary }} />
-        <h2 className="text-base font-bold leading-tight" style={{ color: dark ? '#FFFFFF' : '#111827' }}>{title}</h2>
+        <h2 className="text-xl font-extrabold leading-tight truncate" style={{ color: dark ? '#FFFFFF' : '#111827' }}>{title}</h2>
       </div>
       {onViewAll && (
         <button
@@ -191,9 +161,17 @@ function SectionHeader({ title, onViewAll, dark = false }) {
   )
 }
 
+
+
+// ─── CARD HEIGHT CONSTANTS ────────────────────────────────────
+// Ek jagah change karo, sabme update ho jayega
+const PRODUCT_IMG_H  = 180   // ProductCard image height (px)
+const BESTSELLER_IMG_H = 160 // BestSellerCard image height (px)
+const MACHINERY_IMG_H  = 190 // MachineryRentalCard image height (px)
+
 function ProductCard({ product, wishlist, onToggleWishlist, selectedSize, onSizeChange }) {
-  const isWished = wishlist.has(product.id)
-  const save = product.mrp ? product.mrp - product.price : null
+  const isWished   = wishlist.has(product.id)
+  const save       = product.mrp ? product.mrp - product.price : null
   const discountPct = product.discount || (product.mrp ? `${Math.round(((product.mrp - product.price) / product.mrp) * 100)}%` : null)
   const currentSize = selectedSize || (product.sizes && product.sizes[0])
   const [sizeOpen, setSizeOpen] = useState(false)
@@ -201,11 +179,12 @@ function ProductCard({ product, wishlist, onToggleWishlist, selectedSize, onSize
   return (
     <div
       className={`${T.cardHover} cursor-pointer flex flex-col relative product-card`}
-      style={{ borderRadius: 14, padding: 12 }}
+      style={{ borderRadius: 14, padding: 12, height: '100%' }}
     >
       {/* Discount Badge */}
       {discountPct && (
-        <span className="absolute top-0 left-0 text-[11px] font-bold px-2.5 py-1 z-10" style={{ backgroundColor: C.discountBg, color: C.discountText, borderTopLeftRadius: 10, borderBottomRightRadius: 10 }}>
+        <span className="absolute top-0 left-0 text-[11px] font-bold px-2.5 py-1 z-10"
+          style={{ backgroundColor: C.discountBg, color: C.discountText, borderTopLeftRadius: 10, borderBottomRightRadius: 10 }}>
           {discountPct} OFF
         </span>
       )}
@@ -219,11 +198,10 @@ function ProductCard({ product, wishlist, onToggleWishlist, selectedSize, onSize
         <Heart size={18} fill={isWished ? '#EF4444' : 'none'} stroke={isWished ? '#EF4444' : '#D1D5DB'} strokeWidth={2} />
       </button>
 
-      {/* Image */}
-      <div className="relative w-full flex items-center justify-center mt-2 mb-3 rounded-lg" style={{ height: 200, backgroundColor: C.cardImgBg }}>
-        <img src={product.img} alt={product.name} className="object-contain" style={{ width: 180, height: 180, mixBlendMode: 'multiply' }} />
-        {/* Rating overlay at bottom of image */}
-        {/* Rating overlay at bottom of image */}
+      {/* Image — no background, full cover */}
+      <div className="relative w-full rounded-lg overflow-hidden mt-2 mb-3" style={{ height: PRODUCT_IMG_H }}>
+        <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
+        {/* Rating overlay */}
         <div className="absolute bottom-2 left-2">
           <span className="flex items-center gap-1 text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-sm" style={{ backgroundColor: C.primary }}>
             {product.rating} <Star size={9} fill="white" stroke="none" /> ({product.reviews?.toLocaleString('en-IN')})
@@ -231,83 +209,85 @@ function ProductCard({ product, wishlist, onToggleWishlist, selectedSize, onSize
         </div>
       </div>
 
+      {/* Info container — fixed min-height so all cards align */}
+      <div className="flex flex-col flex-1" style={{ minHeight: 150 }}>
+        {/* Brand */}
+        {product.brand && (
+          <span className="self-start text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded mb-1"
+            style={{ color: C.brandChipText, backgroundColor: C.brandChipBg, letterSpacing: 1 }}>
+            {product.brand}
+          </span>
+        )}
 
-  {/* Brand */}
-      {product.brand && (
-        <span className="self-start text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded mb-1" style={{ color: C.brandChipText, backgroundColor: C.brandChipBg, letterSpacing: 1 }}>
-          {product.brand}
-        </span>
-      )}
+        {/* Name */}
+        <p className="text-[14px] font-medium text-gray-900 leading-5 line-clamp-2 mb-1">
+            {product.name}
+          </p>
 
-      {/* Name */}
-      <p className="text-[14px] font-medium text-gray-900 leading-5 overflow-hidden" style={{ height: 40 }}>{product.name}</p>
+        {/* Bought last month */}
+        {product.boughtLastMonth && (
+          <p className="text-[11px] font-semibold text-amber-600 flex items-center gap-1 mb-0.5">
+            🔥 Bought by {product.boughtLastMonth.toLocaleString('en-IN')} last month
+          </p>
+        )}
 
-      {/* Bought last month */}
-      {product.boughtLastMonth && (
-        <p className="text-[11px] font-semibold text-amber-600 flex items-center gap-1 mb-0.5">
-          🔥 Bought by {product.boughtLastMonth.toLocaleString('en-IN')} last month
-        </p>
-      )}
+        {/* Price */}
+        <div className="mt-auto pt-2 flex flex-col gap-1">
+          <div className="flex items-baseline gap-2 flex-wrap">
+            <span className="text-[22px] font-extrabold text-gray-900">₹{product.price?.toLocaleString?.('en-IN') ?? product.price}</span>
+            {product.mrp && <span className="text-[13px] text-gray-400 line-through">₹{product.mrp.toLocaleString('en-IN')}</span>}
+            {save > 0 && <span className="text-[12px] font-semibold" style={{ color: C.primary }}>(Save ₹{save.toLocaleString('en-IN')})</span>}
+          </div>
 
-      {/* Price */}
-      <div className="mt-auto pt-2 flex flex-col gap-1">
-        <div className="flex items-baseline gap-2 flex-wrap">
-          <span className="text-[24px] font-extrabold text-gray-900">₹{product.price?.toLocaleString?.('en-IN') ?? product.price}</span>
-          {product.mrp && <span className="text-[13px] text-gray-400 line-through">₹{product.mrp.toLocaleString('en-IN')}</span>}
-          {save > 0 && (
-            <span className="text-[12px] font-semibold" style={{ color: C.primary }}>(Save ₹{save.toLocaleString('en-IN')})</span>
+          {/* Size selector */}
+          {product.sizes && (
+            <div className="flex items-center gap-2 mt-1">
+              <span className="text-[12px] font-semibold text-gray-700">Size</span>
+              <div className="flex-1 relative">
+                <button
+                  onClick={e => { e.stopPropagation(); setSizeOpen(prev => !prev) }}
+                  onBlur={() => setTimeout(() => setSizeOpen(false), 150)}
+                  className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-md border text-[13px] font-semibold cursor-pointer transition-all"
+                  style={{
+                    backgroundColor: C.sizeSelectBg,
+                    color: C.primary,
+                    borderColor: sizeOpen ? C.primary : '#D1FAE5',
+                    boxShadow: sizeOpen ? `0 0 0 2px ${C.primary}22` : 'none',
+                  }}
+                >
+                  <span>{currentSize}</span>
+                  <ChevronDown size={13} style={{ color: C.primary, transform: sizeOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.18s ease' }} />
+                </button>
+                {sizeOpen && (
+                  <div
+                    className="absolute bottom-full left-0 right-0 mb-1.5 bg-white rounded-xl border shadow-xl z-[100] overflow-hidden"
+                    style={{ borderColor: `${C.primary}40`, boxShadow: '0 -4px 20px rgba(0,0,0,0.12)' }}
+                  >
+                    {product.sizes.map(s => (
+                      <button
+                        key={s}
+                        onMouseDown={e => e.preventDefault()}
+                        onClick={e => { e.stopPropagation(); onSizeChange(product.id, s); setSizeOpen(false) }}
+                        className="w-full text-left px-3 py-2.5 text-[13px] transition-colors flex items-center justify-between"
+                        style={{
+                          color: s === currentSize ? C.primary : '#374151',
+                          backgroundColor: s === currentSize ? C.sizeSelectBg : 'transparent',
+                          fontWeight: s === currentSize ? 700 : 500,
+                        }}
+                        onMouseEnter={e => { if (s !== currentSize) e.currentTarget.style.backgroundColor = C.primaryLight }}
+                        onMouseLeave={e => { if (s !== currentSize) e.currentTarget.style.backgroundColor = 'transparent' }}
+                      >
+                        {s}
+                        {s === currentSize && <span className="text-[11px]" style={{ color: C.primary }}>✓</span>}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
           )}
         </div>
-        {/* Size selector */}
-        {product.sizes && (
-          <div className="flex items-center gap-2 mt-1">
-            <span className="text-[12px] font-semibold text-gray-700">Size</span>
-            <div className="flex-1 relative">
-              {/* Trigger button */}
-              <button
-                onClick={e => { e.stopPropagation(); setSizeOpen(prev => !prev) }}
-                onBlur={() => setTimeout(() => setSizeOpen(false), 150)}
-                className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-md border text-[13px] font-semibold cursor-pointer transition-all"
-                style={{
-                  backgroundColor: C.sizeSelectBg,
-                  color: C.primary,
-                  borderColor: sizeOpen ? C.primary : '#D1FAE5',
-                  boxShadow: sizeOpen ? `0 0 0 2px ${C.primary}22` : 'none',
-                }}
-              >
-                <span>{currentSize}</span>
-                <ChevronDown size={13} style={{ color: C.primary, transform: sizeOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.18s ease' }} />
-              </button>
-              {/* Popup list — opens upward */}
-              {sizeOpen && (
-                <div
-                  className="absolute bottom-full left-0 right-0 mb-1.5 bg-white rounded-xl border shadow-xl z-[100] overflow-hidden"
-                  style={{ borderColor: `${C.primary}40`, boxShadow: '0 -4px 20px rgba(0,0,0,0.12)' }}
-                >
-                  {product.sizes.map(s => (
-                    <button
-                      key={s}
-                      onMouseDown={e => e.preventDefault()}
-                      onClick={e => { e.stopPropagation(); onSizeChange(product.id, s); setSizeOpen(false) }}
-                      className="w-full text-left px-3 py-2.5 text-[13px] transition-colors flex items-center justify-between"
-                      style={{
-                        color: s === currentSize ? C.primary : '#374151',
-                        backgroundColor: s === currentSize ? C.sizeSelectBg : 'transparent',
-                        fontWeight: s === currentSize ? 700 : 500,
-                      }}
-                      onMouseEnter={e => { if (s !== currentSize) e.currentTarget.style.backgroundColor = C.primaryLight }}
-                      onMouseLeave={e => { if (s !== currentSize) e.currentTarget.style.backgroundColor = 'transparent' }}
-                    >
-                      {s}
-                      {s === currentSize && <span className="text-[11px]" style={{ color: C.primary }}>✓</span>}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        )}  
-      </div>
+      </div>{/* end info container */}
     </div>
   )
 }
@@ -315,21 +295,21 @@ function ProductCard({ product, wishlist, onToggleWishlist, selectedSize, onSize
 function BestSellerCard({ item }) {
   return (
     <div className={`${T.cardHover} p-3 flex flex-col cursor-pointer group`}>
-      <div className="rounded-lg flex items-center justify-center mb-2.5 transition-colors overflow-hidden" style={{ height: '148px', backgroundColor: C.primaryLight }}>
-        <img src={item.img} alt={item.name} className="h-32 w-32 object-cover rounded-md group-hover:scale-105 transition-transform duration-300" style={{ mixBlendMode: 'multiply' }} />
+      {/* Image — no background */}
+      <div className="rounded-lg overflow-hidden mb-2.5" style={{ height: BESTSELLER_IMG_H }}>
+        <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
       </div>
+
       {item.brand && (
-        <span className="self-start text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded mb-1" style={{ color: C.primary, backgroundColor: C.primaryLight }}>
+        <span className="self-start text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded mb-1"
+          style={{ color: C.primary, backgroundColor: C.primaryLight }}>
           {item.brand}
         </span>
       )}
       <p className="text-[13px] font-semibold text-gray-800 line-clamp-2 mb-1.5 leading-snug">{item.name}</p>
       <div className="flex items-center gap-0.5 mb-1.5">
         {[1,2,3,4,5].map(s => (
-          <Star key={s} size={10}
-            fill={s <= Math.round(item.rating) ? C.starFilled : C.starEmpty}
-            stroke="none"
-          />
+          <Star key={s} size={10} fill={s <= Math.round(item.rating) ? C.starFilled : C.starEmpty} stroke="none" />
         ))}
         <span className="text-[10px] text-gray-400 ml-1">({item.reviews})</span>
       </div>
@@ -340,41 +320,33 @@ function BestSellerCard({ item }) {
 
 function MachineryRentalCard({ item }) {
   return (
-    <div
-      className={`${T.cardHover} cursor-pointer flex flex-col relative`}
-      style={{ borderRadius: 14, padding: 12 }}
-    >
+    <div className={`${T.cardHover} cursor-pointer flex flex-col relative`} style={{ borderRadius: 14, padding: 12 }}>
       {/* Wishlist Heart */}
-      <button className="absolute top-2.5 right-2.5 w-9 h-9 bg-white rounded-full flex items-center justify-center z-10 transition-transform hover:scale-110" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+      <button className="absolute top-2.5 right-2.5 w-9 h-9 bg-white rounded-full flex items-center justify-center z-10 transition-transform hover:scale-110"
+        style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
         <Heart size={18} fill="none" stroke="#9CA3AF" strokeWidth={2} />
       </button>
 
-      {/* Image */}
-      <div className="bg-gray-50 rounded-lg flex items-center justify-center mb-3" style={{ height: '140px' }}>
-        <img src={item.img} alt={item.name} className="h-28 w-full object-cover rounded-md hover:scale-105 transition-transform duration-300" />
+      {/* Image — no background */}
+      <div className="rounded-lg overflow-hidden mb-3" style={{ height: MACHINERY_IMG_H }}>
+        <img src={item.img} alt={item.name} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
       </div>
 
       <div className="flex flex-col flex-1 gap-1">
         <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">{item.brand}</p>
         <p className="text-[13px] font-semibold text-gray-800 line-clamp-2 leading-snug">{item.name}</p>
-
-        {/* Star Rating */}
         <div className="flex items-center gap-1 mt-0.5">
           <div className="flex items-center gap-0.5">
             {[1,2,3,4,5].map(s => (
-              <Star key={s} size={11} fill={s <= Math.round(item.rating) ? C.starFilled :C.starEmpty} stroke="none" />
+              <Star key={s} size={11} fill={s <= Math.round(item.rating) ? C.starFilled : C.starEmpty} stroke="none" />
             ))}
           </div>
           <span className="text-[11px] text-gray-400">({item.reviews})</span>
         </div>
-
-        {/* Price per day */}
         <div className="flex items-baseline gap-1 mt-1">
           <span className="text-[15px] font-bold text-gray-900">₹{item.price.toLocaleString('en-IN')}</span>
           <span className="text-[11px] text-gray-400 font-medium">/day</span>
         </div>
-
-        {/* Enquire Now CTA */}
         <button
           className="mt-2 w-full py-2 rounded-lg text-[13px] font-bold transition-all duration-200 border"
           style={{ color: C.primary, borderColor: C.primary, backgroundColor: C.primaryLight }}
@@ -389,100 +361,54 @@ function MachineryRentalCard({ item }) {
 }
 
 // ─── Main ─────────────────────────────────────────────────────
-const heroSlides = [
-  {
-    img: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1440&h=500&q=85',
-    title: 'Better Yields,\nSmarter Solutions',
-    subtitle: 'Get up to 40% off on premium seeds and fertilizers this season.',
-    cta: 'Shop Now',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1440&h=500&q=85',
-    title: 'Rabi Season\nEssentials',
-    subtitle: 'Premium wheat, mustard & gram seeds — delivered to your doorstep.',
-    cta: 'Explore Seeds',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=1440&h=400&fit=crop',
-    title: 'Go Organic,\nGrow Healthy',
-    subtitle: 'Certified organic fertilizers and bio-pesticides now available.',
-    cta: 'Shop Organic',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?auto=format&fit=crop&w=1440&h=500&q=85',
-    title: 'Smart Spraying,\nBetter Results',
-    subtitle: 'Top-rated sprayers & equipment at unbeatable prices.',
-    cta: 'Shop Equipment',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1440&h=500&q=85',
-    title: 'Feed Your Crops\nRight',
-    subtitle: 'Premium fertilizers for maximum yield this season.',
-    cta: 'Shop Fertilizers',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1440&h=500&q=85',
-    title: 'Protect Your\nHarvest',
-    subtitle: 'Certified pesticides & fungicides from trusted brands.',
-    cta: 'Shop Now',
-  },
-]
-
 export default function Home() {
   const navigate = useNavigate()
-  const [currentSlide, setCurrentSlide]   = useState(0)
-  const [wishlist, setWishlist]           = useState(new Set())
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [wishlist, setWishlist]         = useState(new Set())
   const [selectedSizes, setSelectedSizes] = useState({})
 
-const touchStartX = useRef(null)
-const brandTrackRef = useRef(null)
-const brandFirstRef = useRef(null)
-const brandAnimRef  = useRef(null)
-const [brandPaused,setBrandPaused] = useState(false)
+  const touchStartX   = useRef(null)
+  const brandTrackRef = useRef(null)
+  const brandFirstRef = useRef(null)
+  const brandAnimRef  = useRef(null)
+  const brandPausedRef = useRef(false)
 
+  // Brand marquee animation
   useEffect(() => {
+    const track = brandTrackRef.current
+    const first = brandFirstRef.current
+    if (!track || !first) return
 
-  const track = brandTrackRef.current
-  const first = brandFirstRef.current
-  if(!track || !first) return
+    let width = first.offsetWidth
+    let pos   = 0
+    const speed = 0.5
 
-  let width = first.offsetWidth
-  let pos = 0
-  const speed = 0.5
-
-  const step = () => {
-
-    if(!brandPaused){
-      pos += speed
-
-      if(pos >= width){
-        pos = 0
+    const step = () => {
+      if (!brandPausedRef.current) {
+        pos += speed
+        if (pos >= width) pos = 0
+        track.style.transform = `translateX(-${pos}px)`
       }
-
-      track.style.transform = `translateX(-${pos}px)`
+      brandAnimRef.current = requestAnimationFrame(step)
     }
 
     brandAnimRef.current = requestAnimationFrame(step)
-  }
+    const resize = () => { width = first.offsetWidth }
+    window.addEventListener('resize', resize)
 
-  brandAnimRef.current = requestAnimationFrame(step)
+    return () => {
+      cancelAnimationFrame(brandAnimRef.current)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
 
-  const resize = () => width = first.offsetWidth
-  window.addEventListener('resize',resize)
-
-  return () => {
-    cancelAnimationFrame(brandAnimRef.current)
-    window.removeEventListener('resize',resize)
-  }
-
-},[])
-
+  // Hero auto-slide
   useEffect(() => {
     const t = setInterval(() => setCurrentSlide(p => (p + 1) % heroSlides.length), 5000)
     return () => clearInterval(t)
   }, [])
 
-  const toggleWishlist = (id) => setWishlist(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n })
+  const toggleWishlist  = (id) => setWishlist(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n })
   const handleSizeChange = (id, size) => setSelectedSizes(prev => ({ ...prev, [id]: size }))
 
   return (
@@ -492,14 +418,20 @@ const [brandPaused,setBrandPaused] = useState(false)
         .hero-arrow { transition: opacity 0.3s ease, background-color 0.2s ease; }
         @keyframes whatsappBounce {
           0%, 100% { transform: translateY(0); }
-          30% { transform: translateY(-10px); }
-          60% { transform: translateY(-5px); }
+          30%       { transform: translateY(-10px); }
+          60%       { transform: translateY(-5px); }
         }
         .whatsapp-bounce { animation: whatsappBounce 2.5s ease-in-out infinite; }
         .whatsapp-bounce:hover { animation: none; transform: scale(1.1); }
+        @keyframes swipeBounce {
+          0%, 100% { transform: translateX(0); }
+          30%       { transform: translateX(-5px); }
+          60%       { transform: translateX(5px); }
+        }
+        .swipe-bounce { animation: swipeBounce 1.6s ease-in-out infinite; }
       `}</style>
 
-{/* Category Nav */}
+      {/* ── Category Nav ─────────────────────────────────────── */}
       <div className="w-full border-b border-gray-200 py-3" style={{ backgroundColor: C.sectionBg2 }}>
         <div className="max-w-[1440px] mx-auto px-4 flex gap-3 overflow-x-auto scrollbar-hide pb-1 md:overflow-visible md:justify-evenly md:gap-2 w-full">
           {[
@@ -513,7 +445,8 @@ const [brandPaused,setBrandPaused] = useState(false)
             { label: 'Cattle Feed', img: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=120&h=120&fit=crop&crop=center' },
             { label: 'Safety',      img: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?w=120&h=120&fit=crop&crop=center' },
           ].map((cat, idx) => (
-            <button key={idx} className="flex flex-col items-center gap-2 group flex-shrink-0" onClick={() => navigate(`/category/${cat.label.toLowerCase()}`)}>
+            <button key={idx} className="flex flex-col items-center gap-2 group flex-shrink-0"
+              onClick={() => navigate(`/category/${cat.label.toLowerCase()}`)}>
               <div
                 className="w-[72px] h-[72px] md:w-[84px] md:h-[84px] overflow-hidden border-[3px] border-gray-200 transition-all duration-200"
                 onMouseEnter={e => { e.currentTarget.style.borderColor = C.primary; e.currentTarget.style.boxShadow = `0 0 0 3px ${C.primary}22` }}
@@ -528,128 +461,128 @@ const [brandPaused,setBrandPaused] = useState(false)
         </div>
       </div>
 
-
-      {/* Hero Carousel */}
+      {/* ── Hero Carousel ─────────────────────────────────────── */}
       <div className="px-4 pt-4 max-w-[1400px] mx-auto w-full">
-      <div className="relative w-full rounded-2xl overflow-hidden shadow-lg hero-carousel" style={{ height: 'clamp(200px, 45vw, 380px)' }}>
-       {/* Slides track */}
-        <div
-          className="flex h-full"
-          onTouchStart={e => { touchStartX.current = e.touches[0].clientX }}
-          onTouchEnd={e => {
-            if (touchStartX.current === null) return
-            const diff = touchStartX.current - e.changedTouches[0].clientX
-            if (diff > 40) setCurrentSlide(p => (p + 1) % heroSlides.length)
-            else if (diff < -40) setCurrentSlide(p => (p - 1 + heroSlides.length) % heroSlides.length)
-            touchStartX.current = null
-          }}
-          style={{
-            display: 'flex',
-            height: '100%',
-            width: `${heroSlides.length * 100}%`,
-            transform: `translateX(-${currentSlide * (100 / heroSlides.length)}%)`,
-            transition: 'transform 0.7s cubic-bezier(0.4,0,0.2,1)',
-          }}
-        >
-          {heroSlides.map((slide, idx) => (
-            <div key={idx} className="relative flex-shrink-0" style={{ width: `${100 / heroSlides.length}%`, height: 'clamp(200px, 45vw, 380px)' }}>
-              <img src={slide.img} alt={slide.title} className="w-full h-full object-cover" />
-            </div>
-          ))}
-        </div>
+        <div className="relative w-full rounded-2xl overflow-hidden shadow-lg hero-carousel" style={{ height: 'clamp(200px, 45vw, 380px)' }}>
+          <div
+            className="flex h-full"
+            onTouchStart={e => { touchStartX.current = e.touches[0].clientX }}
+            onTouchEnd={e => {
+              if (touchStartX.current === null) return
+              const diff = touchStartX.current - e.changedTouches[0].clientX
+              if (diff > 40)       setCurrentSlide(p => (p + 1) % heroSlides.length)
+              else if (diff < -40) setCurrentSlide(p => (p - 1 + heroSlides.length) % heroSlides.length)
+              touchStartX.current = null
+            }}
+            style={{
+              width: `${heroSlides.length * 100}%`,
+              transform: `translateX(-${currentSlide * (100 / heroSlides.length)}%)`,
+              transition: 'transform 0.7s cubic-bezier(0.4,0,0.2,1)',
+            }}
+          >
+            {heroSlides.map((slide, idx) => (
+              <div key={idx} className="relative flex-shrink-0" style={{ width: `${100 / heroSlides.length}%`, height: 'clamp(200px, 45vw, 380px)' }}>
+                <img src={slide.img} alt={slide.title} className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
 
-        {/* Left Arrow */}
-        <button
-          className="hero-arrow absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center transition-colors opacity-0"
-          style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
-          onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.65)'}
-          onMouseLeave={e => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.4)'}
-          onClick={() => setCurrentSlide(p => (p - 1 + heroSlides.length) % heroSlides.length)}
-        >
-          <ChevronLeft size={24} className="text-white" />
-        </button>
+          <button
+            className="hero-arrow absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center opacity-0"
+            style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.65)'}
+            onMouseLeave={e => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.4)'}
+            onClick={() => setCurrentSlide(p => (p - 1 + heroSlides.length) % heroSlides.length)}
+          >
+            <ChevronLeft size={24} className="text-white" />
+          </button>
+          <button
+            className="hero-arrow absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center opacity-0"
+            style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.65)'}
+            onMouseLeave={e => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.4)'}
+            onClick={() => setCurrentSlide(p => (p + 1) % heroSlides.length)}
+          >
+            <ChevronRight size={24} className="text-white" />
+          </button>
 
-        {/* Right Arrow */}
-        <button
-          className="hero-arrow absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center transition-colors opacity-0"
-          style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
-          onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.65)'}
-          onMouseLeave={e => e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.4)'}
-          onClick={() => setCurrentSlide(p => (p + 1) % heroSlides.length)}
-        >
-          <ChevronRight size={24} className="text-white" />
-        </button>
-
-        {/* Dots */}
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2">
-          {heroSlides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className="h-[10px] rounded-full transition-all duration-300"
-              style={{ width: idx === currentSlide ? 32 : 10, backgroundColor: idx === currentSlide ? '#fff' : 'rgba(255,255,255,0.4)' }}
-            />
-          ))}
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2">
+            {heroSlides.map((_, idx) => (
+              <button key={idx} onClick={() => setCurrentSlide(idx)}
+                className="h-[10px] rounded-full transition-all duration-300"
+                style={{ width: idx === currentSlide ? 32 : 10, backgroundColor: idx === currentSlide ? '#fff' : 'rgba(255,255,255,0.4)' }}
+              />
+            ))}
+          </div>
         </div>
       </div>
-      </div>
 
-
-      {/* Trending Products */}
+      {/* ── Trending Products ─────────────────────────────────── */}
       <div className="w-full bg-white border-y border-gray-100">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-        <SectionHeader title="Trending Products" onViewAll={() => navigate('/products')} />
-{/* Desktop grid */}
-        <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {trendingProducts.map((p) => (
-            <ProductCard key={p.id} product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
-          ))}
-        </div>
-        {/* Mobile: 2-row grid inside single horizontal scroll */}
-        <div className="md:hidden overflow-x-auto scrollbar-hide pb-1">
-          <div className="grid grid-rows-2 grid-flow-col gap-3" style={{ gridTemplateRows: 'repeat(2, auto)' }}>
-            {trendingProducts.map((p) => (
-              <div key={p.id} className="w-[170px]">
-                <ProductCard product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
-              </div>
+          <SectionHeader title="Trending Products" onViewAll={() => navigate('/products')} />
+          <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {trendingProducts.map(p => (
+              <ProductCard key={p.id} product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
             ))}
+          </div>
+          <div className="md:hidden">
+            
+            <div className="overflow-x-auto scrollbar-hide pb-1">
+              <div className="flex flex-col gap-3">
+                {/* Row 1 */}
+                <div className="flex gap-3">
+                  {trendingProducts.filter((_, i) => i % 2 === 0).map(p => (
+                    <div key={p.id} className="flex-shrink-0 w-[170px] h-[420px]">
+                      <ProductCard product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
+                    </div>
+                  ))}
+                </div>
+                {/* Row 2 */}
+                <div className="flex gap-3">
+                  {trendingProducts.filter((_, i) => i % 2 === 1).map(p => (
+                    <div key={p.id} className="flex-shrink-0 w-[170px] h-[420px]">
+                      <ProductCard product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-     </div> 
 
-{/* Rent the Machinery */}
+      {/* ── Rent the Machinery ────────────────────────────────── */}
       <div className="w-full bg-[#EEF6FF] border-y border-[#BDD9F7]">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-        <SectionHeader title="Rent the Machinery" onViewAll={() => navigate('/machinery-rental')} />
-        {/* Desktop grid */}
-        <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {rentalMachinery.map((item) => (
-            <MachineryRentalCard key={item.id} item={item} />
-          ))}
-        </div>
-        {/* Mobile: horizontal scroll */}
-        <div className="md:hidden overflow-x-auto scrollbar-hide pb-1">
-          <div className="flex gap-3">
-            {rentalMachinery.map((item) => (
-              <div key={item.id} className="flex-shrink-0 w-[170px]">
-                <MachineryRentalCard item={item} />
+          <SectionHeader title="Rent the Machinery" onViewAll={() => navigate('/machinery-rental')} />
+          <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {rentalMachinery.map(item => <MachineryRentalCard key={item.id} item={item} />)}
+          </div>
+          <div className="md:hidden">
+            
+            <div className="overflow-x-auto scrollbar-hide pb-1">
+              <div className="flex gap-3">
+                {rentalMachinery.map(item => (
+                  <div key={item.id} className="flex-shrink-0 w-[170px]">
+                    <MachineryRentalCard item={item} />
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
-      </div>
 
-{/* Trust Strip — full width bleed */}
+      {/* ── Trust Strip ───────────────────────────────────────── */}
       <div className="-mx-4" style={{ backgroundColor: C.trustStripBg, borderTop: `1px solid ${C.trustStripBorder}`, borderBottom: `1px solid ${C.trustStripBorder}` }}>
         <div className="max-w-[1400px] mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {[
-              { Icon: Tag,        title: '100% Branded Products', sub: 'Only verified brands'    },
-              { Icon: BadgeCheck, title: '100% Original Products', sub: 'Genuine & certified'    },
-              { Icon: Truck,      title: 'Free Delivery',          sub: 'On orders above ₹999'   },
-              { Icon: Wallet,     title: 'Cash on Delivery',       sub: 'Available pan-India'    },
+              { Icon: Tag,        title: '100% Branded Products', sub: 'Only verified brands'  },
+              { Icon: BadgeCheck, title: '100% Original Products', sub: 'Genuine & certified'  },
+              { Icon: Truck,      title: 'Free Delivery',          sub: 'On orders above ₹999' },
+              { Icon: Wallet,     title: 'Cash on Delivery',       sub: 'Available pan-India'  },
             ].map(({ Icon, title, sub }, i) => (
               <div key={i} className={`flex items-center gap-3 px-6 py-5 ${i < 3 ? 'border-r border-white/20' : ''}`}>
                 <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}>
@@ -665,196 +598,182 @@ const [brandPaused,setBrandPaused] = useState(false)
         </div>
       </div>
 
-      {/* Shop By Crop */}
+      {/* ── Shop By Crop ──────────────────────────────────────── */}
       <div className="w-full border-y border-[#C8E6DA]" style={{ background: '#EBF5F0' }}>
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-        <SectionHeader title="Shop By Crop" onViewAll={() => navigate('/crops')} />
-        <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-1 md:grid md:grid-cols-9 md:gap-2">
-          {crops.map((crop, i) => (
-            <button key={i} onClick={() => navigate(`/crop/${crop.name.toLowerCase()}`)} className="flex flex-col items-center gap-2 group flex-shrink-0">
-              <div
-                className="w-16 h-16 overflow-hidden transition-all duration-200"
-                style={{ borderRadius: '28%' }}
-              >
-                <img src={crop.img} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-              </div>
-             <span className="text-xs font-semibold text-gray-700 group-hover:text-pub-primary transition-colors text-center leading-tight">{crop.name}</span>
-            </button>
-          ))}
-          <button onClick={() => navigate('/crops')} className="flex flex-col items-center gap-2 group flex-shrink-0">
-            <div className="w-16 h-16 rounded-full bg-gray-100 border-2 border-dashed border-gray-300 group-hover:border-pub-primary flex items-center justify-center transition-all duration-200">
-              <ChevronRight size={20} className="text-gray-400 group-hover:text-pub-primary transition-colors" />
-            </div>
-            <span className="text-xs font-semibold text-gray-500 group-hover:text-pub-primary transition-colors">View All</span>
-          </button>
-        </div>
-        </div>
-      </div>
-        
-        {/* Ad Banners */}
-      <div className="px-4 py-4 max-w-[1400px] mx-auto w-full">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {[
-          { img: IMG.adBanner1 },
-          { img: IMG.adBanner2 },
-          { img: IMG.adBanner3 },
-          { img: IMG.adBanner4 },
-        ].map((ad, i) => (
-          <div key={i} className="relative rounded-xl overflow-hidden cursor-pointer group shadow-card hover:shadow-card-hover transition-all" style={{ height: '180px' }}>
-            <img src={ad.img} alt="Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            <span className="absolute bottom-2 right-2 text-[10px] font-bold text-white px-1.5 py-0.5 rounded" style={{ backgroundColor: 'rgba(0,0,0,0.45)' }}>Ad</span>
-          </div>
-        ))}
-      </div>
-      </div>
-
-        {/* Shop by Brand */}
-<div className="w-full bg-[#EEF6FF] border-y border-[#BDD9F7]">
-  <div className="max-w-[1400px] mx-auto px-4 py-5">
-  <SectionHeader title="Shop by Brand" onViewAll={() => navigate('/brands')} />
-
-  <div
-  className="overflow-x-auto md:overflow-hidden scrollbar-hide"
-    onMouseEnter={() => setBrandPaused(true)}
-    onMouseLeave={() => setBrandPaused(false)}
-    onTouchStart={() => setBrandPaused(true)}
-    onTouchEnd={() => setBrandPaused(false)}
-  >
-    <div
-      ref={brandTrackRef}
-      className="flex items-center gap-4 w-max"
-      style={{
-        whiteSpace: 'nowrap',
-        willChange: 'transform',
-        touchAction:'pan-x'
-      }}
-    >
-      {[0,1,2].map(copy => (
-        <div
-          key={copy}
-          ref={copy === 0 ? brandFirstRef : null}
-          className="flex items-center gap-4 flex-shrink-0 pr-4"
-        >
-          {brands.map((brand,i) => (
-            <button
-              key={i}
-              onClick={() => navigate(`/brand/${brand.name.toLowerCase().replace(/\s+/g,'-')}`)}
-              className="flex-shrink-0 h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center transition-all duration-200 group"
-              onMouseEnter={e=>{
-                e.currentTarget.style.borderColor=C.primary
-                e.currentTarget.style.backgroundColor='#fff'
-              }}
-              onMouseLeave={e=>{
-                e.currentTarget.style.borderColor='#F3F4F6'
-                e.currentTarget.style.backgroundColor='#F9FAFB'
-              }}
-            >
-              <span className="text-sm font-bold text-gray-400 group-hover:text-gray-800 transition-colors tracking-wide uppercase whitespace-nowrap">
-                {brand.name}
-              </span>
-            </button>
-          ))}
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
-</div>
-
-          {/* Recently Viewed */}
-      <div className="w-full bg-white border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-4 py-5">
-        <SectionHeader title="Recently Viewed" onViewAll={() => navigate('/recently-viewed')} />
-        {/* Desktop grid */}
-        <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
-          {recentlyViewed.map((p) => (
-            <ProductCard key={p.id} product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
-          ))}
-        </div>
-        {/* Mobile: 2-row grid inside single horizontal scroll */}
-        <div className="md:hidden overflow-x-auto scrollbar-hide pb-1">
-          <div className="grid grid-rows-2 grid-flow-col gap-3" style={{ gridTemplateRows: 'repeat(2, auto)' }}>
-            {recentlyViewed.map((p) => (
-              <div key={p.id} className="w-[170px]">
-                <ProductCard product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
-              </div>
+          <SectionHeader title="Shop By Crop" onViewAll={() => navigate('/crops')} />
+          <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-1 md:grid md:grid-cols-9 md:gap-2">
+            {crops.map((crop, i) => (
+              <button key={i} onClick={() => navigate(`/crop/${crop.name.toLowerCase()}`)}
+                className="flex flex-col items-center gap-2 group flex-shrink-0">
+                <div className="w-16 h-16 overflow-hidden transition-all duration-200" style={{ borderRadius: '28%' }}>
+                  <img src={crop.img} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <span className="text-xs font-semibold text-gray-700 group-hover:text-pub-primary transition-colors text-center leading-tight">{crop.name}</span>
+              </button>
             ))}
+            <button onClick={() => navigate('/crops')} className="flex flex-col items-center gap-2 group flex-shrink-0">
+              <div className="w-16 h-16 rounded-full bg-gray-100 border-2 border-dashed border-gray-300 group-hover:border-pub-primary flex items-center justify-center transition-all duration-200">
+                <ChevronRight size={20} className="text-gray-400 group-hover:text-pub-primary transition-colors" />
+              </div>
+              <span className="text-xs font-semibold text-gray-500 group-hover:text-pub-primary transition-colors">View All</span>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* ── Ad Banners ────────────────────────────────────────── */}
+      <div className="px-4 py-4 max-w-[1400px] mx-auto w-full">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {[IMG.adBanner1, IMG.adBanner2, IMG.adBanner3, IMG.adBanner4].map((img, i) => (
+            <div key={i} className="relative rounded-xl overflow-hidden cursor-pointer group shadow-card hover:shadow-card-hover transition-all" style={{ height: '180px' }}>
+              <img src={img} alt="Ad" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <span className="absolute bottom-2 right-2 text-[10px] font-bold text-white px-1.5 py-0.5 rounded" style={{ backgroundColor: 'rgba(0,0,0,0.45)' }}>Ad</span>
+            </div>
+          ))}
+        </div>
       </div>
 
-{/* Best Sellers in Seeds */}
-      <div className="w-full bg-[#FFF8EC] border-y border-[#FFD98E]">
-        <div className="max-w-[1400px] mx-auto px-4 py-5">
-        <SectionHeader title="Best Sellers in Seeds" onViewAll={() => navigate('/category/seeds')} />
-        <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {bestSellerSeeds.map((item) => (
-            <BestSellerCard key={item.id} item={item} />
-          ))}
-        </div>
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1 md:hidden">
-          {bestSellerSeeds.map((item) => (
-            <div key={item.id} className="flex-shrink-0 w-[170px]"><BestSellerCard item={item} /></div>
-          ))}
-        </div>
-      </div>
-      </div>
-
-     {/* Best Sellers in Crop Protection */}
-      <div className="w-full bg-white border-y border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-4 py-5">
-        <SectionHeader title="Best Sellers in Crop Protection" onViewAll={() => navigate('/category/crop-protection')} />
-        <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {bestSellerCropProtection.map((item) => (
-            <BestSellerCard key={item.id} item={item} />
-          ))}
-        </div>
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1 md:hidden">
-          {bestSellerCropProtection.map((item) => (
-            <div key={item.id} className="flex-shrink-0 w-[170px]"><BestSellerCard item={item} /></div>
-          ))}
-        </div>
-      </div>
-      </div>
-
-      {/* Best Sellers in Crop Nutrition */}
+      {/* ── Shop by Brand ─────────────────────────────────────── */}
       <div className="w-full bg-[#EEF6FF] border-y border-[#BDD9F7]">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-        <SectionHeader title="Best Sellers in Crop Nutrition" onViewAll={() => navigate('/category/crop-nutrition')} />
-        <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {bestSellerCropNutrition.map((item) => (
-            <BestSellerCard key={item.id} item={item} />
-          ))}
+          <SectionHeader title="Shop by Brand" onViewAll={() => navigate('/brands')} />
+          <div
+            className="overflow-x-auto md:overflow-hidden scrollbar-hide"
+            onMouseEnter={() => { brandPausedRef.current = true  }}
+            onMouseLeave={() => { brandPausedRef.current = false }}
+            onTouchStart={() => { brandPausedRef.current = true  }}
+            onTouchEnd={()   => { brandPausedRef.current = false }}
+          >
+            <div ref={brandTrackRef} className="flex items-center gap-4 w-max" style={{ whiteSpace: 'nowrap', willChange: 'transform', touchAction: 'pan-x' }}>
+              {[0, 1, 2].map(copy => (
+                <div key={copy} ref={copy === 0 ? brandFirstRef : null} className="flex items-center gap-4 flex-shrink-0 pr-4">
+                  {brands.map((brand, i) => (
+                    <button
+                      key={i}
+                      onClick={() => navigate(`/brand/${brand.name.toLowerCase().replace(/\s+/g, '-')}`)}
+                      className="flex-shrink-0 h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center transition-all duration-200 group"
+                      onMouseEnter={e => { e.currentTarget.style.borderColor = C.primary; e.currentTarget.style.backgroundColor = '#fff' }}
+                      onMouseLeave={e => { e.currentTarget.style.borderColor = '#F3F4F6'; e.currentTarget.style.backgroundColor = '#F9FAFB' }}
+                    >
+                      <span className="text-sm font-bold text-gray-400 group-hover:text-gray-800 transition-colors tracking-wide uppercase whitespace-nowrap">{brand.name}</span>
+                    </button>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1 md:hidden">
-          {bestSellerCropNutrition.map((item) => (
-            <div key={item.id} className="flex-shrink-0 w-[170px]"><BestSellerCard item={item} /></div>
-          ))}
-        </div>
-      </div>
       </div>
 
-      {/* Best Sellers in Farm Tools */}
+      {/* ── Recently Viewed ───────────────────────────────────── */}
+      <div className="w-full bg-white border-y border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
+          <SectionHeader title="Recently Viewed" onViewAll={() => navigate('/recently-viewed')} />
+          <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {recentlyViewed.map(p => (
+              <ProductCard key={p.id} product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
+            ))}
+          </div>
+          <div className="md:hidden">
+            
+            <div className="overflow-x-auto scrollbar-hide pb-1">
+              <div className="flex flex-col gap-3">
+                {/* Row 1 */}
+                <div className="flex gap-3">
+                  {recentlyViewed.filter((_, i) => i % 2 === 0).map(p => (
+                    <div key={p.id} className="flex-shrink-0 w-[170px] h-[420px]">
+                      <ProductCard product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
+                    </div>
+                  ))}
+                </div>
+                {/* Row 2 */}
+                <div className="flex gap-3">
+                  {recentlyViewed.filter((_, i) => i % 2 === 1).map(p => (
+                    <div key={p.id} className="flex-shrink-0 w-[170px] h-[420px]">
+                      <ProductCard product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Best Sellers in Seeds ─────────────────────────────── */}
       <div className="w-full bg-[#FFF8EC] border-y border-[#FFD98E]">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-        <SectionHeader title="Best Sellers in Farm Tools" onViewAll={() => navigate('/category/farm-tools')} />
-        <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {bestSellerFarmTools.map((item) => (
-            <BestSellerCard key={item.id} item={item} />
-          ))}
-        </div>
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1 md:hidden">
-          {bestSellerFarmTools.map((item) => (
-            <div key={item.id} className="flex-shrink-0 w-[170px]"><BestSellerCard item={item} /></div>
-          ))}
+          <SectionHeader title="Best Sellers in Seeds" onViewAll={() => navigate('/category/seeds')} />
+          <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {bestSellerSeeds.map(item => <BestSellerCard key={item.id} item={item} />)}
+          </div>
+          <div className="md:hidden">
+            
+            <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1">
+              {bestSellerSeeds.map(item => (
+                <div key={item.id} className="flex-shrink-0 w-[160px]"><BestSellerCard item={item} /></div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* ── Best Sellers in Crop Protection ──────────────────── */}
+      <div className="w-full bg-white border-y border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
+          <SectionHeader title="Best Sellers in Crop Protection" onViewAll={() => navigate('/category/crop-protection')} />
+          <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {bestSellerCropProtection.map(item => <BestSellerCard key={item.id} item={item} />)}
+          </div>
+          <div className="md:hidden">
+            
+            <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1">
+              {bestSellerCropProtection.map(item => (
+                <div key={item.id} className="flex-shrink-0 w-[160px]"><BestSellerCard item={item} /></div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
+      {/* ── Best Sellers in Crop Nutrition ───────────────────── */}
+      <div className="w-full bg-[#EEF6FF] border-y border-[#BDD9F7]">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
+          <SectionHeader title="Best Sellers in Crop Nutrition" onViewAll={() => navigate('/category/crop-nutrition')} />
+          <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {bestSellerCropNutrition.map(item => <BestSellerCard key={item.id} item={item} />)}
+          </div>
+          <div className="md:hidden">
+            
+            <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1">
+              {bestSellerCropNutrition.map(item => (
+                <div key={item.id} className="flex-shrink-0 w-[160px]"><BestSellerCard item={item} /></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
 
+      {/* ── Best Sellers in Farm Tools ────────────────────────── */}
+      <div className="w-full bg-[#FFF8EC] border-y border-[#FFD98E]">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
+          <SectionHeader title="Best Sellers in Farm Tools" onViewAll={() => navigate('/category/farm-tools')} />
+          <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {bestSellerFarmTools.map(item => <BestSellerCard key={item.id} item={item} />)}
+          </div>
+          <div className="md:hidden">
+            
+            <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-1">
+              {bestSellerFarmTools.map(item => (
+                <div key={item.id} className="flex-shrink-0 w-[160px]"><BestSellerCard item={item} /></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
 
-    {/* WhatsApp Floating Button */}
+      {/* ── WhatsApp Floating Button ──────────────────────────── */}
       <a
         href="https://wa.me/918755446300?text=Hello%2C%20I%20need%20help%20with%20my%20order%20on%20Beej%20Spray."
         target="_blank"
@@ -866,6 +785,6 @@ const [brandPaused,setBrandPaused] = useState(false)
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
       </a>
-</div>
+    </div>
   )
 }

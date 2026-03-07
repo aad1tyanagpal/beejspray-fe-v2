@@ -68,3 +68,13 @@
 /* Hide scrollbar utility */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Swipe nudge bounce */
+@keyframes swipe-bounce {
+  0%, 100% { transform: translateX(0); }
+  30%       { transform: translateX(-6px); }
+  60%       { transform: translateX(6px); }
+}
+.swipe-bounce {
+  animation: swipe-bounce 1.6s ease-in-out infinite;
+}
