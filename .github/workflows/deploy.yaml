@@ -19,7 +19,7 @@ jobs:
         run: npm install
 
       - name: Build Public App
-        run: npx cross-env mode=public vite build
+        run: npx vite build --mode public
         env:
           VITE_BASE_PATH: /beejspray-fe-v2/
 
