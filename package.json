@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "deploy:public": "cross-env VITE_BASE_PATH=/https://github.com/aad1tyanagpal/beejspray-fe/ vite build --mode public && gh-pages -d dist/public",
-    "deploy:seller": "cross-env VITE_BASE_PATH=/https://github.com/aad1tyanagpal/beejspray-fe/seller/ vite build --mode seller && gh-pages -d dist/seller -e seller",
-    "deploy:admin": "cross-env VITE_BASE_PATH=/https://github.com/aad1tyanagpal/beejspray-fe/admin/ vite build --mode admin && gh-pages -d dist/admin -e admin",
+    "deploy:public": "cross-env VITE_BASE_PATH=/https://github.com/aad1tyanagpal/beejspray-fe-v2/ vite build --mode public && gh-pages -d dist/public",
+    "deploy:seller": "cross-env VITE_BASE_PATH=/https://github.com/aad1tyanagpal/beejspray-fe-v2/seller/ vite build --mode seller && gh-pages -d dist/seller -e seller",
+    "deploy:admin": "cross-env VITE_BASE_PATH=/https://github.com/aad1tyanagpal/beejspray-fe-v2/admin/ vite build --mode admin && gh-pages -d dist/admin -e admin",
     "dev": "concurrently \"npm run dev:public\" \"npm run dev:seller\" \"npm run dev:admin\"",
     "dev:public": "vite --mode public",
     "dev:seller": "vite --mode seller",
