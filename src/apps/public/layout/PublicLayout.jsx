@@ -6,7 +6,7 @@ export default function PublicLayout() {
   return (
     <div className="min-h-screen flex flex-col bg-pub-page-bg">
       <PublicHeader />
-      <main className="flex-1 w-full pb-16 md:pb-0">
+      <main className="flex-1 w-full pb-16 md:pb-0 overflow-x-hidden">
         <Outlet />
       </main>
       <PublicFooter />

@@ -408,6 +408,24 @@ const heroSlides = [
     subtitle: 'Certified organic fertilizers and bio-pesticides now available.',
     cta: 'Shop Organic',
   },
+  {
+    img: 'https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?auto=format&fit=crop&w=1440&h=500&q=85',
+    title: 'Smart Spraying,\nBetter Results',
+    subtitle: 'Top-rated sprayers & equipment at unbeatable prices.',
+    cta: 'Shop Equipment',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1440&h=500&q=85',
+    title: 'Feed Your Crops\nRight',
+    subtitle: 'Premium fertilizers for maximum yield this season.',
+    cta: 'Shop Fertilizers',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1440&h=500&q=85',
+    title: 'Protect Your\nHarvest',
+    subtitle: 'Certified pesticides & fungicides from trusted brands.',
+    cta: 'Shop Now',
+  },
 ]
 
 export default function Home() {
@@ -416,7 +434,8 @@ export default function Home() {
   const [wishlist, setWishlist]           = useState(new Set())
   const [selectedSizes, setSelectedSizes] = useState({})
 
-  const brandTrackRef = useRef(null)
+const touchStartX = useRef(null)
+const brandTrackRef = useRef(null)
 const brandFirstRef = useRef(null)
 const brandAnimRef  = useRef(null)
 const [brandPaused,setBrandPaused] = useState(false)
@@ -467,7 +486,7 @@ const [brandPaused,setBrandPaused] = useState(false)
   const handleSizeChange = (id, size) => setSelectedSizes(prev => ({ ...prev, [id]: size }))
 
   return (
-    <div className="flex flex-col gap-4 py-4 px-4 max-w-[1400px] mx-auto">
+    <div className="flex flex-col w-full">
       <style>{`
         .hero-carousel:hover .hero-arrow { opacity: 1 !important; }
         .hero-arrow { transition: opacity 0.3s ease, background-color 0.2s ease; }
@@ -480,13 +499,53 @@ const [brandPaused,setBrandPaused] = useState(false)
         .whatsapp-bounce:hover { animation: none; transform: scale(1.1); }
       `}</style>
 
-      {/* Hero Banner */}
+{/* Category Nav */}
+      <div className="w-full border-b border-gray-200 py-3" style={{ backgroundColor: C.sectionBg2 }}>
+        <div className="max-w-[1440px] mx-auto px-4 flex gap-3 overflow-x-auto scrollbar-hide pb-1 md:overflow-visible md:justify-evenly md:gap-2 w-full">
+          {[
+            { label: 'Seeds',       img: 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=120&h=120&fit=crop&crop=center' },
+            { label: 'Pesticides',  img: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=120&h=120&fit=crop&crop=center' },
+            { label: 'Fertilizers', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=120&h=120&fit=crop&crop=center' },
+            { label: 'Equipment',   img: 'https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?w=120&h=120&fit=crop&crop=center' },
+            { label: 'Fungicides',  img: 'https://images.unsplash.com/photo-1471193945509-9ad0617afabf?w=120&h=120&fit=crop&crop=center' },
+            { label: 'Herbicides',  img: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=120&h=120&fit=crop&crop=center' },
+            { label: 'Organic',     img: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?w=120&h=120&fit=crop&crop=center' },
+            { label: 'Cattle Feed', img: 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=120&h=120&fit=crop&crop=center' },
+            { label: 'Safety',      img: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?w=120&h=120&fit=crop&crop=center' },
+          ].map((cat, idx) => (
+            <button key={idx} className="flex flex-col items-center gap-2 group flex-shrink-0" onClick={() => navigate(`/category/${cat.label.toLowerCase()}`)}>
+              <div
+                className="w-[72px] h-[72px] md:w-[84px] md:h-[84px] overflow-hidden border-[3px] border-gray-200 transition-all duration-200"
+                onMouseEnter={e => { e.currentTarget.style.borderColor = C.primary; e.currentTarget.style.boxShadow = `0 0 0 3px ${C.primary}22` }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#E5E7EB'; e.currentTarget.style.boxShadow = 'none' }}
+                style={{ borderRadius: '50%' }}
+              >
+                <img src={cat.img} alt={cat.label} className="w-full h-full object-cover" />
+              </div>
+              <span className="text-[13px] font-semibold text-gray-700 group-hover:text-pub-primary transition-colors text-center leading-tight whitespace-nowrap">{cat.label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+
       {/* Hero Carousel */}
+      <div className="px-4 pt-4 max-w-[1400px] mx-auto w-full">
       <div className="relative w-full rounded-2xl overflow-hidden shadow-lg hero-carousel" style={{ height: 'clamp(200px, 45vw, 380px)' }}>
-        {/* Slides track */}
+       {/* Slides track */}
         <div
           className="flex h-full"
+          onTouchStart={e => { touchStartX.current = e.touches[0].clientX }}
+          onTouchEnd={e => {
+            if (touchStartX.current === null) return
+            const diff = touchStartX.current - e.changedTouches[0].clientX
+            if (diff > 40) setCurrentSlide(p => (p + 1) % heroSlides.length)
+            else if (diff < -40) setCurrentSlide(p => (p - 1 + heroSlides.length) % heroSlides.length)
+            touchStartX.current = null
+          }}
           style={{
+            display: 'flex',
+            height: '100%',
             width: `${heroSlides.length * 100}%`,
             transform: `translateX(-${currentSlide * (100 / heroSlides.length)}%)`,
             transition: 'transform 0.7s cubic-bezier(0.4,0,0.2,1)',
@@ -533,9 +592,12 @@ const [brandPaused,setBrandPaused] = useState(false)
           ))}
         </div>
       </div>
+      </div>
+
 
       {/* Trending Products */}
-      <div className={T.sectionWhite}>
+      <div className="w-full bg-white border-y border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
         <SectionHeader title="Trending Products" onViewAll={() => navigate('/products')} />
 {/* Desktop grid */}
         <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -554,9 +616,11 @@ const [brandPaused,setBrandPaused] = useState(false)
           </div>
         </div>
       </div>
+     </div> 
 
 {/* Rent the Machinery */}
-      <div className={T.sectionGreen}>
+      <div className="w-full bg-[#EEF6FF] border-y border-[#BDD9F7]">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
         <SectionHeader title="Rent the Machinery" onViewAll={() => navigate('/machinery-rental')} />
         {/* Desktop grid */}
         <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -574,6 +638,7 @@ const [brandPaused,setBrandPaused] = useState(false)
             ))}
           </div>
         </div>
+      </div>
       </div>
 
 {/* Trust Strip — full width bleed */}
@@ -601,7 +666,8 @@ const [brandPaused,setBrandPaused] = useState(false)
       </div>
 
       {/* Shop By Crop */}
-      <div className="rounded-2xl p-5" style={{ background: '#EBF5F0', border: '1px solid #C8E6DA' }}>
+      <div className="w-full border-y border-[#C8E6DA]" style={{ background: '#EBF5F0' }}>
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
         <SectionHeader title="Shop By Crop" onViewAll={() => navigate('/crops')} />
         <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-1 md:grid md:grid-cols-9 md:gap-2">
           {crops.map((crop, i) => (
@@ -622,9 +688,11 @@ const [brandPaused,setBrandPaused] = useState(false)
             <span className="text-xs font-semibold text-gray-500 group-hover:text-pub-primary transition-colors">View All</span>
           </button>
         </div>
+        </div>
       </div>
         
         {/* Ad Banners */}
+      <div className="px-4 py-4 max-w-[1400px] mx-auto w-full">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { img: IMG.adBanner1 },
@@ -638,9 +706,11 @@ const [brandPaused,setBrandPaused] = useState(false)
           </div>
         ))}
       </div>
+      </div>
 
         {/* Shop by Brand */}
-<div className={T.sectionGreen}>
+<div className="w-full bg-[#EEF6FF] border-y border-[#BDD9F7]">
+  <div className="max-w-[1400px] mx-auto px-4 py-5">
   <SectionHeader title="Shop by Brand" onViewAll={() => navigate('/brands')} />
 
   <div
@@ -689,9 +759,11 @@ const [brandPaused,setBrandPaused] = useState(false)
     </div>
   </div>
 </div>
+</div>
 
           {/* Recently Viewed */}
-      <div className={T.sectionWhite}>
+      <div className="w-full bg-white border-y border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
         <SectionHeader title="Recently Viewed" onViewAll={() => navigate('/recently-viewed')} />
         {/* Desktop grid */}
         <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -710,9 +782,11 @@ const [brandPaused,setBrandPaused] = useState(false)
           </div>
         </div>
       </div>
+      </div>
 
 {/* Best Sellers in Seeds */}
-      <div className={T.sectionCream}>
+      <div className="w-full bg-[#FFF8EC] border-y border-[#FFD98E]">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
         <SectionHeader title="Best Sellers in Seeds" onViewAll={() => navigate('/category/seeds')} />
         <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
           {bestSellerSeeds.map((item) => (
@@ -725,9 +799,11 @@ const [brandPaused,setBrandPaused] = useState(false)
           ))}
         </div>
       </div>
+      </div>
 
      {/* Best Sellers in Crop Protection */}
-      <div className={T.sectionWhite}>
+      <div className="w-full bg-white border-y border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
         <SectionHeader title="Best Sellers in Crop Protection" onViewAll={() => navigate('/category/crop-protection')} />
         <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
           {bestSellerCropProtection.map((item) => (
@@ -740,9 +816,11 @@ const [brandPaused,setBrandPaused] = useState(false)
           ))}
         </div>
       </div>
+      </div>
 
       {/* Best Sellers in Crop Nutrition */}
-      <div className={T.sectionGreen}>
+      <div className="w-full bg-[#EEF6FF] border-y border-[#BDD9F7]">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
         <SectionHeader title="Best Sellers in Crop Nutrition" onViewAll={() => navigate('/category/crop-nutrition')} />
         <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
           {bestSellerCropNutrition.map((item) => (
@@ -755,9 +833,11 @@ const [brandPaused,setBrandPaused] = useState(false)
           ))}
         </div>
       </div>
+      </div>
 
       {/* Best Sellers in Farm Tools */}
-      <div className={T.sectionCream}>
+      <div className="w-full bg-[#FFF8EC] border-y border-[#FFD98E]">
+        <div className="max-w-[1400px] mx-auto px-4 py-5">
         <SectionHeader title="Best Sellers in Farm Tools" onViewAll={() => navigate('/category/farm-tools')} />
         <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
           {bestSellerFarmTools.map((item) => (
@@ -769,6 +849,7 @@ const [brandPaused,setBrandPaused] = useState(false)
             <div key={item.id} className="flex-shrink-0 w-[170px]"><BestSellerCard item={item} /></div>
           ))}
         </div>
+      </div>
       </div>
 
 
@@ -785,7 +866,6 @@ const [brandPaused,setBrandPaused] = useState(false)
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
       </a>
-
-    </div>
+</div>
   )
 }

@@ -184,7 +184,7 @@ window.addEventListener("resize", updateWidth)
       {/* ── Main Header ── */}
       <div
         className={`w-full border-b border-white/10 transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 right-0 z-[999] shadow-md' : 'relative'}`}
-        style={{ backgroundColor: C.headerBg }}
+        style={{ backgroundColor: C.headerMid  }}
       >
         <div className="max-w-[1440px] mx-auto px-4 py-2.5 flex flex-col md:flex-row md:items-center md:justify-between gap-3" style={{ backgroundColor: C.headerBg }}>
           {/* ── Mobile Row 1: Logo + Language + Become Seller ── */}
@@ -386,27 +386,29 @@ window.addEventListener("resize", updateWidth)
       {/* ── Sticky spacer ── */}
       {isSticky && <div style={{ height: 62 }} />}
 
-      {/* ── Category Nav ── */}
-      <div className="w-full border-b border-gray-200 py-3 overflow-x-hidden" style={{ backgroundColor: C.sectionBg2 }}>
-        <div className="max-w-[1440px] mx-auto px-4 flex gap-3 overflow-x-auto scrollbar-hide pb-1 md:overflow-visible md:justify-evenly md:gap-2 w-full">
-          {categories.map((cat, idx) => (
-            <button key={idx} className="flex flex-col items-center gap-2 group flex-shrink-0" onClick={() => navigate(`/category/${cat.label.toLowerCase()}`)}>
-              <div
-                className="w-[72px] h-[72px] md:w-[84px] md:h-[84px] overflow-hidden border-[3px] border-gray-200 transition-all duration-200"
-                onMouseEnter={e => { e.currentTarget.style.borderColor = C.primary; e.currentTarget.style.boxShadow = `0 0 0 3px ${C.primary}22` }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = '#E5E7EB'; e.currentTarget.style.boxShadow = 'none' }}
-                style={{ borderRadius: '50%' }}
-              >
-                <img src={cat.img} alt={cat.label} className="w-full h-full object-cover" />
-              </div>
-              <span className="text-[13px] font-semibold text-gray-700 group-hover:text-pub-primary transition-colors text-center leading-tight whitespace-nowrap">{cat.label}</span>
-            </button>
-          ))}
-        </div>
+      {/* ── Delivery Strip (Mobile only) ── */}
+      <div
+        className="md:hidden w-full px-4 py-2 flex items-center gap-2 border-b border-white/10 cursor-pointer"
+        style={{ backgroundColor: C.headerBg }}
+        onClick={() => setShowAddressModal(true)}
+      >
+        <MapPin size={14} style={{ color: C.headerNavHover }} className="flex-shrink-0" />
+        <span className="text-[13px] text-white font-medium truncate">
+          Delivering to {addr.name.split(' ')[0]} {addr.city} {addr.pin}
+        </span>
+        <ChevronDown size={13} style={{ color: C.headerNavHover }} className="flex-shrink-0 ml-auto" />
       </div>
+
+
 
 {/* ── Mobile Bottom Navbar ── */}
       <div className="fixed bottom-0 inset-x-0 w-full max-w-[100vw] overflow-hidden z-[998] border-t border-gray-200 md:hidden flex" style={{ backgroundColor: C.sectionBg1 }}>
+        <button onClick={() => navigate('/')} className="flex-1 flex flex-col items-center justify-center py-2 gap-0.5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: C.gray700 }}>
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span className="text-[10px] font-semibold" style={{ color: C.gray700 }}>Home</span>
+        </button>
         <button onClick={() => navigate('/kisaan-vani')} className="flex-1 flex flex-col items-center justify-center py-2 gap-0.5">
           <Sprout size={22} style={{ color: C.primary }} />
           <span className="text-[10px] font-semibold" style={{ color: C.primary }}>Kisaan Vani</span>
