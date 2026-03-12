@@ -76,7 +76,7 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: current.outDir,
       rollupOptions: {
-        input: path.resolve(__dirname, current.entry),
+        input: { index: path.resolve(__dirname, current.entry) },
       },
     },
   }
