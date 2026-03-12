@@ -21,6 +21,7 @@
 
 
 import { defineConfig } from 'vite'
+import fs from 'fs'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 const appConfigs = {
@@ -70,7 +71,6 @@ export default defineConfig(({ mode }) => {
       ...(appTarget === 'seller' ? [{
         name: 'copy-404-for-seller',
         closeBundle() {
-          const fs = require('fs');
           fs.copyFileSync(
             path.resolve(__dirname, '404-seller.html'),
             path.resolve(__dirname, 'dist/seller/404.html')
