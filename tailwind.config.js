@@ -97,7 +97,7 @@ export default {
         'pub-section-2-border':     '#BDD9F7',
         'pub-section-3':            '#FFF8EC',
         'pub-section-3-border':     '#FFD98E',
-        'pub-header':               '#1A3C1F',
+        'pub-header':               '#1A3D20',
         'pub-header-dark':          '#112815',
         'pub-header-mid':           '#1F4A25',
         'pub-header-bottom':        '#0D1A0F',
@@ -105,10 +105,11 @@ export default {
 
 
         // ─── Seller App ───────────────────────────
-        'sel-primary':       '#1E40AF',
-        'sel-primary-dark':  '#1E3A8A',
+        'sel-primary':       '#16A34A',
+        'sel-primary-dark':  '#15803D',
+        'sel-primary-light': '#DCFCE7',
         'sel-accent':        '#F59E0B',
-        'sel-header':        '#1E293B',
+        'sel-header':        '#15803D',
 
         // ─── Admin App ────────────────────────────
         'adm-primary':       '#7C3AED',

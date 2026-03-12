@@ -16,13 +16,13 @@ export const C = {
   sectionBg3:       '#FFF8EC',   // fresh green — clearly visible
   sectionBg2Border: '#FFD580',   // saffron/golden section border
   sectionBg3Border: '#C6E8CC',   // soft green section border
-  headerBg:         '#235E2E',   // dark green header — slightly lighter
+  headerBg:         '#1A3D20',   // dark green header — slightly lighter
   headerBgDark:     '#112815',
-  headerMid:        '#1F4A25',
+  headerMid:        '#1A3D20',
   headerBottom:     '#0D1A0F',
   headerNavText:    '#FFFFFF',
   headerNavHover:   '#FFD580',   // golden hover
-  footerBg:         '#1A0E00',
+  footerBg:         '#111A06',
   footerBottom:     '#0D0700',
   cardImgBg:        '#FFF9F0',
   brandChipBg:      '#FFF3DC',

@@ -201,9 +201,9 @@ function ProductCard({ product, wishlist, onToggleWishlist, selectedSize, onSize
       {/* Image — no background, full cover */}
       <div className="relative w-full rounded-lg overflow-hidden mt-2 mb-3" style={{ height: PRODUCT_IMG_H }}>
         <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
-        {/* Rating overlay */}
-        <div className="absolute bottom-2 left-2">
-          <span className="flex items-center gap-1 text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-sm" style={{ backgroundColor: C.primary }}>
+        {/* Rating + Bought overlay */}
+        <div className="absolute bottom-2 left-2 flex flex-col gap-1">
+          <span className="inline-flex items-center gap-1 text-white text-[11px] font-bold px-2 py-0.5 rounded-full shadow-sm self-start" style={{ backgroundColor: C.primary }}>
             {product.rating} <Star size={9} fill="white" stroke="none" /> ({product.reviews?.toLocaleString('en-IN')})
           </span>
         </div>
@@ -220,16 +220,18 @@ function ProductCard({ product, wishlist, onToggleWishlist, selectedSize, onSize
         )}
 
         {/* Name */}
-        <p className="text-[14px] font-medium text-gray-900 leading-5 line-clamp-2 mb-1">
-            {product.name}
-          </p>
+        <p className="text-[14px] font-medium text-gray-900 leading-5 line-clamp-2 mb-0.5">
+          {product.name}
+        </p>
 
         {/* Bought last month */}
         {product.boughtLastMonth && (
-          <p className="text-[11px] font-semibold text-amber-600 flex items-center gap-1 mb-0.5">
+          <p className="text-[10px] font-semibold text-amber-600 flex items-center gap-1 mb-1">
             🔥 Bought by {product.boughtLastMonth.toLocaleString('en-IN')} last month
           </p>
         )}
+
+
 
         {/* Price */}
         <div className="mt-auto pt-2 flex flex-col gap-1">

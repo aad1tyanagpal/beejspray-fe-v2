@@ -72,14 +72,30 @@ export default function PublicHeader() {
   const [isListening, setIsListening]       = useState(false)
   const [showVoicePopup, setShowVoicePopup] = useState(false)
   const [voiceText, setVoiceText]           = useState('')
-  const [showAddressModal, setShowAddressModal] = useState(false)
-  const [selectedAddress, setSelectedAddress]   = useState(0)
-  const [pincode, setPincode]               = useState('')
+const [showAddressModal, setShowAddressModal] = useState(false)
+const [selectedAddress, setSelectedAddress]   = useState(0)
+const [pincode, setPincode]               = useState('')
+const [isFocused, setIsFocused]           = useState(false)
+const [phIndex, setPhIndex]               = useState(0)
+const [phExit, setPhExit]                 = useState(false)
+
+const searchKeywords = ['Seeds', 'Pesticides', 'Fertilizers', 'Herbicides', 'Organic', 'Equipment']
   const langRef          = useRef(null)
   const recognitionRef   = useRef(null)
   const marqueeRef       = useRef(null)
   const marqueeFirstRef  = useRef(null)
   const marqueeAnimRef   = useRef(null)
+
+  useEffect(() => {
+  const t = setInterval(() => {
+    setPhExit(true)
+    setTimeout(() => {
+      setPhIndex(i => (i + 1) % searchKeywords.length)
+      setPhExit(false)
+    }, 350)
+  }, 2800)
+  return () => clearInterval(t)
+}, [])
 
   useEffect(() => {
     const track = marqueeRef.current
@@ -160,8 +176,18 @@ window.addEventListener("resize", updateWidth)
 
   const addr = savedAddresses[selectedAddress]
 
-  return (
+return (
     <div className="w-full font-sans">
+      <style>{`
+        @keyframes ph-exit {
+          0%   { transform: translateY(0);     opacity: 1; }
+          100% { transform: translateY(-130%); opacity: 0; }
+        }
+        @keyframes ph-enter {
+          0%   { transform: translateY(130%);  opacity: 0; }
+          100% { transform: translateY(0);     opacity: 1; }
+        }
+      `}</style>
 
       {/* ── Marquee Banner ── */}
       <div className="w-full h-8 overflow-hidden flex items-center" style={{ backgroundColor: C.primary }}>
@@ -281,15 +307,43 @@ window.addEventListener("resize", updateWidth)
             onFocus={e => e.currentTarget.style.borderColor = C.primary}
             onBlur={e => e.currentTarget.style.borderColor = C.gray200}
           >
-            <input
-              type="text"
-              className="flex-1 px-3.5 text-sm outline-none placeholder:text-gray-400"
-              style={{ color: C.gray900 }}
-              placeholder="Search for seeds, pesticides, brands and more..."
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && navigate(`/search?q=${searchQuery}`)}
-            />
+            <div className="flex-1 relative flex items-center overflow-hidden">
+
+              {/* ── Animated Placeholder Overlay ── */}
+              {!searchQuery && !isFocused && (
+                <div className="absolute inset-0 flex items-center px-3.5 pointer-events-none select-none gap-[5px] overflow-hidden">
+                  <span className="text-sm text-gray-400 whitespace-nowrap flex-shrink-0">
+                    Search for
+                  </span>
+                  <div className="relative flex items-center overflow-hidden h-full flex-1">
+                    <span
+                      key={phIndex}
+                      className="absolute left-0 text-sm text-gray-400 whitespace-nowrap"
+                      style={{
+                        animation: phExit
+                          ? 'ph-exit 0.35s ease forwards'
+                          : 'ph-enter 0.35s ease forwards'
+                      }}
+                    >
+                      "{searchKeywords[phIndex]}"
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {/* ── Real Input ── */}
+              <input
+                type="text"
+                className="flex-1 w-full h-full px-3.5 text-sm outline-none bg-transparent"
+                style={{ color: C.gray900, caretColor: C.primary }}
+                placeholder=""
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                onKeyDown={e => e.key === 'Enter' && navigate(`/search?q=${searchQuery}`)}
+              />
+            </div>
             {/* Mic */}
             <button
               onClick={handleVoiceSearch}
