@@ -9,8 +9,11 @@ const SellerRoutes = () => {
   return (
     <Routes>
       <Route element={<SellerLayout />}>
+        {/* Public Routes */}
         <Route path="/" element={<Dashboard />} />
         <Route path="/inventory" element={<Inventory />} />
+
+        {/* Private Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />
         </Route>
