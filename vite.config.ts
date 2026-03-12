@@ -57,12 +57,9 @@ export default defineConfig(({ mode }) => {
         name: 'html-entry-rewrite',
         configureServer(server) {
           server.middlewares.use((req, _res, next) => {
-            // if (appTarget !== 'public' && req.url === '/') {
-            //   req.url = `/${current.entry}`
-            // }
             if (
-              !req.url?.includes('.') &&   // not file (js/css/png)
-              !req.url?.startsWith('/@')   // vite internal
+              !req.url?.includes('.') &&
+              !req.url?.startsWith('/@')
             ) {
               req.url = `/${current.entry}`
             }
@@ -70,18 +67,6 @@ export default defineConfig(({ mode }) => {
           })
         },
       },
-    ],
-    server: {
-      port: current.port,
-    },
-    base: process.env.VITE_BASE_PATH || '/',
-    build: {
-      outDir: current.outDir,
-      rollupOptions: {
-        input: path.resolve(__dirname, current.entry),
-      },
-    },
-    plugins: [
       ...(appTarget === 'seller' ? [{
         name: 'copy-404-for-seller',
         closeBundle() {
@@ -93,5 +78,15 @@ export default defineConfig(({ mode }) => {
         }
       }] : []),
     ],
+    server: {
+      port: current.port,
+    },
+    base: process.env.VITE_BASE_PATH || '/',
+    build: {
+      outDir: current.outDir,
+      rollupOptions: {
+        input: path.resolve(__dirname, current.entry),
+      },
+    },
   }
 })
