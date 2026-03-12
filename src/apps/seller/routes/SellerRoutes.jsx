@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 
 import Profile from "../pages/Profile";
 
@@ -10,7 +10,6 @@ import SellerLayout from "../layout/SellerLayout";
 const SellerRoutes = () => {
   const base = import.meta.env.BASE_URL || '/';
   return (
-    <BrowserRouter basename={base}>
     <Routes>
       <Route element={<SellerLayout />}>
         {/* Public Routes */}
@@ -23,7 +22,6 @@ const SellerRoutes = () => {
         </Route>
       </Route>
     </Routes>
-    </BrowserRouter>
   );
 };
 
