@@ -424,7 +424,7 @@ return (
 
             {/* Become a Seller */}
             <button
-              onClick={() => window.location.href = 'http://localhost:5174'}
+              onClick={() => window.location.href = 'https://aad1tyanagpal.github.io/beejspray-fe-v2/seller/'}
               className="flex items-center gap-1.5 text-white text-[12px] font-bold px-3 py-2 rounded-md transition-colors ml-auto md:ml-0 whitespace-nowrap"
               style={{ backgroundColor: '#FFFFFF', color: C.primary }}
               onMouseEnter={e => e.currentTarget.style.backgroundColor = '#F0FFF4'}
