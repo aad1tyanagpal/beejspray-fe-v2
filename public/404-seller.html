@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>BeejSpray Seller</title>
+    <script>
+      var base = '/beejspray-fe-v2/seller';
+      var path = window.location.pathname.replace(base, '') || '/';
+      sessionStorage.setItem('spa-redirect', path + window.location.search);
+      window.location.replace(base + '/');
+    </script>
+  </head>
+  <body></body>
+</html>

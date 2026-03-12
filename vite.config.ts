@@ -81,5 +81,17 @@ export default defineConfig(({ mode }) => {
         input: path.resolve(__dirname, current.entry),
       },
     },
+    plugins: [
+      ...(appTarget === 'seller' ? [{
+        name: 'copy-404-for-seller',
+        closeBundle() {
+          const fs = require('fs');
+          fs.copyFileSync(
+            path.resolve(__dirname, '404-seller.html'),
+            path.resolve(__dirname, 'dist/seller/404.html')
+          );
+        }
+      }] : []),
+    ],
   }
 })

@@ -50,7 +50,7 @@ const marqueeItems = [
   { text: '🚚 Free Shipping Above ₹2000', href: '/shipping-policy' },
   { text: '💰 Cash on Delivery Available', href: '/help/payments' },
   { text: '🌾 Rabi Season Sale — Up to 40% Off', href: '/deals' },
-  { text: '🏪 Sell on Beej Spray', href: 'http://localhost:5174' },
+  { text: '🏪 Sell on Beej Spray', href: 'https://aad1tyanagpal.github.io/beejspray-fe-v2/seller/' },
   { text: '📱 Download the App', href: '/download' },
   { text: '⭐ Trusted by 10,000+ Farmers', href: '/about' },
 ]
@@ -262,7 +262,7 @@ return (
 
           {/* Become Seller — mobile only */}
           <button
-            onClick={() => window.location.href = 'http://localhost:5174'}
+            onClick={() => window.location.href = 'https://aad1tyanagpal.github.io/beejspray-fe-v2/seller/'}
             className="md:hidden flex items-center gap-1.5 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-md transition-colors flex-shrink-0"
             style={{ backgroundColor: '#FFFFFF', color: C.primary }}
           >
