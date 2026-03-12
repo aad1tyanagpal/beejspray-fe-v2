@@ -28,10 +28,14 @@ jobs:
         env:
           VITE_BASE_PATH: /beejspray-fe-v2/
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/public
-          publish_branch: gh-pages
-          force_orphan: true
+      - name: Build Seller App
+        run: npx vite build --mode seller
+        env:
+          VITE_BASE_PATH: /beejspray-fe-v2/seller/
+
+      - name: Merge builds
+        run: |
+          mkdir -p dist/final
+          cp -r dist/public/. dist/final/
+          mkdir -p dist/final/seller
+          cp -r dist/seller/. dist/fina
