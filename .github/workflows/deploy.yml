@@ -37,11 +37,7 @@ jobs:
         run: |
           mkdir -p dist/final
           cp -r dist/public/. dist/final/
-          if [ -d "dist/seller" ]; then
-            mkdir -p dist/final/seller
-            cp -r dist/seller/. dist/final/seller/
-            echo "✅ Seller build merged"
-          else
-            echo "❌ dist/seller not found — seller build failed!"
-            exit 1
-          fi
+
+          mkdir -p dist/final/seller
+          cp -r dist/seller/. dist/final/seller/
+          mv dist/final/seller/seller.html dist/final/seller/index.html
