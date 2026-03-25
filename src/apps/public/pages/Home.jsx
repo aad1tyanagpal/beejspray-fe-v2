@@ -170,6 +170,7 @@ const BESTSELLER_IMG_H = 160 // BestSellerCard image height (px)
 const MACHINERY_IMG_H  = 190 // MachineryRentalCard image height (px)
 
 function ProductCard({ product, wishlist, onToggleWishlist, selectedSize, onSizeChange }) {
+  const navigate   = useNavigate()
   const isWished   = wishlist.has(product.id)
   const save       = product.mrp ? product.mrp - product.price : null
   const discountPct = product.discount || (product.mrp ? `${Math.round(((product.mrp - product.price) / product.mrp) * 100)}%` : null)
@@ -180,6 +181,7 @@ function ProductCard({ product, wishlist, onToggleWishlist, selectedSize, onSize
     <div
       className={`${T.cardHover} cursor-pointer flex flex-col relative product-card`}
       style={{ borderRadius: 14, padding: 12, height: '100%' }}
+      onClick={() => navigate(`/product/${product.id}`)}
     >
       {/* Discount Badge */}
       {discountPct && (
@@ -295,8 +297,9 @@ function ProductCard({ product, wishlist, onToggleWishlist, selectedSize, onSize
 }
 
 function BestSellerCard({ item }) {
+  const navigate = useNavigate()
   return (
-    <div className={`${T.cardHover} p-3 flex flex-col cursor-pointer group`}>
+    <div className={`${T.cardHover} p-3 flex flex-col cursor-pointer group`} onClick={() => navigate(`/product/${item.id}`)}>
       {/* Image — no background */}
       <div className="rounded-lg overflow-hidden mb-2.5" style={{ height: BESTSELLER_IMG_H }}>
         <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />

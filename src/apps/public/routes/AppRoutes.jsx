@@ -11,6 +11,7 @@ import Checkout from "../pages/Checkout";
 import Account from "../pages/Account";
 import Orders from "../pages/Orders";
 import OrderDetail from "../pages/OrderDetail";
+import ProductDetail from "../pages/ProductDetail";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -28,6 +29,7 @@ const AppRoutes = () => {
         <Route path="/account" element={<Account />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/orders/:id" element={<OrderDetail />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
