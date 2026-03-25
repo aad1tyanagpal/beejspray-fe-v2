@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Search, Mic, MapPin, ChevronDown, Globe, Heart, User, ShoppingCart, Store, Sprout  } from 'lucide-react'
+import { Mic,ShoppingCart, Heart, User, Globe, ChevronDown, Search, Sprout, Package, RotateCcw, Star, MapPin, Settings } from 'lucide-react'
 import { C, T } from '../theme'
 
 // ─── Inline SVG Icons (lucide doesn't have social/store icons we need) ───
@@ -10,7 +10,7 @@ const IconGlobe = () => (
     <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
   </svg>
 )
-const IconStore = () => (
+const Store = () => (
   <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
   </svg>
@@ -407,11 +407,76 @@ return (
               <span className="text-[12px] font-medium mt-0.5" style={{ color: C.headerNavText }}>Wishlist</span>
             </button>
 
-            {/* Account */}
-            <button onClick={() => navigate('/login')} className={T.navItem}>
-              <User size={22} style={{ color: C.headerNavText }} />
-              <span className="text-[12px] font-medium mt-0.5" style={{ color: C.headerNavText }}>Account</span>
-            </button>
+            {/* Account — hover dropdown */}
+            <div
+              className="relative group"
+              onMouseEnter={() => {}}
+              onMouseLeave={() => {}}
+            >
+              <button className={T.navItem}>
+                <User size={22} style={{ color: C.headerNavText }} />
+                <span className="text-[12px] font-medium mt-0.5" style={{ color: C.headerNavText }}>Account</span>
+              </button>
+
+              {/* Dropdown */}
+              <div
+                className="absolute right-0 top-full pt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-[2000]"
+              >
+                <div
+                  className="rounded-xl overflow-hidden"
+                  style={{ backgroundColor: C.white, border: `1px solid ${C.gray200}`, boxShadow: '0 8px 32px rgba(0,0,0,0.15)' }}
+                >
+                  {/* Sign In CTA */}
+                  <div className="px-4 py-3" style={{ borderBottom: `1px solid ${C.gray200}` }}>
+                    <button
+                      onClick={() => navigate('/login')}
+                      className="w-full py-2 rounded-lg text-xs font-bold text-white"
+                      style={{ backgroundColor: C.primary }}
+                    >
+                      Sign In / Register
+                    </button>
+                  </div>
+
+                  {/* Menu items */}
+                  {[
+                    { label: 'My Orders',   path: '/orders',  Icon: Package   },
+                    { label: 'My Returns',  path: '/returns', Icon: RotateCcw },
+                    { label: 'My Reviews',  path: '/reviews', Icon: Star      },
+                  ].map(({ label, path, Icon }) => (
+                    <button
+                      key={path}
+                      onClick={() => navigate(path)}
+                      className="w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center gap-3"
+                      style={{ color: C.gray700 }}
+                      onMouseEnter={e => e.currentTarget.style.backgroundColor = C.primaryLight}
+                      onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
+                    >
+                      <Icon size={15} style={{ color: C.primary }} />
+                      {label}
+                    </button>
+                  ))}
+
+                  <div style={{ borderTop: `1px solid ${C.gray200}` }}>
+                    {[
+                      { label: 'My Addresses',     path: '/addresses', Icon: MapPin   },
+                      { label: 'Profile Settings', path: '/profile',   Icon: Settings },
+                    ].map(({ label, path, Icon }) => (
+                      <button
+                        key={path}
+                        onClick={() => navigate(path)}
+                        className="w-full text-left px-4 py-2.5 text-sm transition-colors flex items-center gap-3"
+                        style={{ color: C.gray700 }}
+                        onMouseEnter={e => e.currentTarget.style.backgroundColor = C.primaryLight}
+                        onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
+                      >
+                        <Icon size={15} style={{ color: C.primary }} />
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Cart */}
             <button onClick={() => navigate('/cart')} className={`${T.navItem} relative`}>
@@ -478,7 +543,7 @@ return (
           </div>
           <span className="text-[10px] font-semibold" style={{ color: C.gray700 }}>Cart</span>
         </button>
-        <button onClick={() => navigate('/login')} className="flex-1 flex flex-col items-center justify-center py-2 gap-0.5">
+        <button onClick={() => navigate('/account')} className="flex-1 flex flex-col items-center justify-center py-2 gap-0.5">
           <User size={22} style={{ color: C.gray700 }} />
           <span className="text-[10px] font-semibold" style={{ color: C.gray700 }}>Account</span>
         </button>
