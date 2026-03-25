@@ -12,6 +12,7 @@ import Account from "../pages/Account";
 import Orders from "../pages/Orders";
 import OrderDetail from "../pages/OrderDetail";
 import ProductDetail from "../pages/ProductDetail";
+import CategoryPage from "../pages/CategoryPage";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -30,7 +31,8 @@ const AppRoutes = () => {
         <Route path="/orders" element={<Orders />} />
         <Route path="/orders/:id" element={<OrderDetail />} />
         <Route path="/product/:id" element={<ProductDetail />} />
-
+        <Route path="/category/:slug" element={<CategoryPage />} />
+        
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />
