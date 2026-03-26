@@ -451,7 +451,7 @@ export default function Home() {
             { label: 'Safety',      img: 'https://images.unsplash.com/photo-1628352081506-83c43123ed6d?w=120&h=120&fit=crop&crop=center' },
           ].map((cat, idx) => (
             <button key={idx} className="flex flex-col items-center gap-2 group flex-shrink-0"
-              onClick={() => navigate(`/category/${cat.label.toLowerCase()}`)}>
+              onClick={() => navigate(`/explore/category/${cat.label.toLowerCase()}`)}>
               <div
                 className="w-[72px] h-[72px] md:w-[84px] md:h-[84px] overflow-hidden border-[3px] border-gray-200 transition-all duration-200"
                 onMouseEnter={e => { e.currentTarget.style.borderColor = C.primary; e.currentTarget.style.boxShadow = `0 0 0 3px ${C.primary}22` }}
@@ -525,7 +525,7 @@ export default function Home() {
       {/* ── Trending Products ─────────────────────────────────── */}
       <div className="w-full bg-white border-y border-gray-100">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-          <SectionHeader title="Trending Products" onViewAll={() => navigate('/products')} />
+          <SectionHeader title="Trending Products" onViewAll={() => navigate('/products/trending')} />
           <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
             {trendingProducts.map(p => (
               <ProductCard key={p.id} product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
@@ -560,7 +560,7 @@ export default function Home() {
       {/* ── Rent the Machinery ────────────────────────────────── */}
       <div className="w-full bg-[#EEF6FF] border-y border-[#BDD9F7]">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-          <SectionHeader title="Rent the Machinery" onViewAll={() => navigate('/machinery-rental')} />
+          <SectionHeader title="Rent the Machinery" onViewAll={() => navigate('/explore/category/equipment')} />
           <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
             {rentalMachinery.map(item => <MachineryRentalCard key={item.id} item={item} />)}
           </div>
@@ -606,10 +606,10 @@ export default function Home() {
       {/* ── Shop By Crop ──────────────────────────────────────── */}
       <div className="w-full border-y border-[#C8E6DA]" style={{ background: '#EBF5F0' }}>
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-          <SectionHeader title="Shop By Crop" onViewAll={() => navigate('/crops')} />
+          <SectionHeader title="Shop By Crop" onViewAll={() => navigate('/explore')} />
           <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-1 md:grid md:grid-cols-9 md:gap-2">
             {crops.map((crop, i) => (
-              <button key={i} onClick={() => navigate(`/crop/${crop.name.toLowerCase()}`)}
+              <button key={i} onClick={() => navigate(`/explore/crop/${crop.name.toLowerCase()}`)}
                 className="flex flex-col items-center gap-2 group flex-shrink-0">
                 <div className="w-16 h-16 overflow-hidden transition-all duration-200" style={{ borderRadius: '28%' }}>
                   <img src={crop.img} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
@@ -617,7 +617,7 @@ export default function Home() {
                 <span className="text-xs font-semibold text-gray-700 group-hover:text-pub-primary transition-colors text-center leading-tight">{crop.name}</span>
               </button>
             ))}
-            <button onClick={() => navigate('/crops')} className="flex flex-col items-center gap-2 group flex-shrink-0">
+            <button onClick={() => navigate('/explore')} className="flex flex-col items-center gap-2 group flex-shrink-0">
               <div className="w-16 h-16 rounded-full bg-gray-100 border-2 border-dashed border-gray-300 group-hover:border-pub-primary flex items-center justify-center transition-all duration-200">
                 <ChevronRight size={20} className="text-gray-400 group-hover:text-pub-primary transition-colors" />
               </div>
@@ -642,7 +642,7 @@ export default function Home() {
       {/* ── Shop by Brand ─────────────────────────────────────── */}
       <div className="w-full bg-[#EEF6FF] border-y border-[#BDD9F7]">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-          <SectionHeader title="Shop by Brand" onViewAll={() => navigate('/brands')} />
+          <SectionHeader title="Shop by Brand" onViewAll={() => navigate('/explore')} />
           <div
             className="overflow-x-auto md:overflow-hidden scrollbar-hide"
             onMouseEnter={() => { brandPausedRef.current = true  }}
@@ -656,7 +656,7 @@ export default function Home() {
                   {brands.map((brand, i) => (
                     <button
                       key={i}
-                      onClick={() => navigate(`/brand/${brand.name.toLowerCase().replace(/\s+/g, '-')}`)}
+                      onClick={() => navigate(`/explore/brand/${brand.name.toLowerCase().replace(/\s+/g, '-')}`)}
                       className="flex-shrink-0 h-14 px-5 bg-gray-50 border border-gray-100 rounded-xl flex items-center justify-center transition-all duration-200 group"
                       onMouseEnter={e => { e.currentTarget.style.borderColor = C.primary; e.currentTarget.style.backgroundColor = '#fff' }}
                       onMouseLeave={e => { e.currentTarget.style.borderColor = '#F3F4F6'; e.currentTarget.style.backgroundColor = '#F9FAFB' }}
@@ -674,7 +674,7 @@ export default function Home() {
       {/* ── Recently Viewed ───────────────────────────────────── */}
       <div className="w-full bg-white border-y border-gray-100">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-          <SectionHeader title="Recently Viewed" onViewAll={() => navigate('/recently-viewed')} />
+          <SectionHeader title="Recently Viewed" onViewAll={() => navigate('/account?tab=recently-viewed')} />
           <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-5 gap-4">
             {recentlyViewed.map(p => (
               <ProductCard key={p.id} product={p} wishlist={wishlist} onToggleWishlist={toggleWishlist} selectedSize={selectedSizes[p.id]} onSizeChange={handleSizeChange} />
@@ -709,7 +709,7 @@ export default function Home() {
       {/* ── Best Sellers in Seeds ─────────────────────────────── */}
       <div className="w-full bg-[#FFF8EC] border-y border-[#FFD98E]">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-          <SectionHeader title="Best Sellers in Seeds" onViewAll={() => navigate('/category/seeds')} />
+          <SectionHeader title="Best Sellers in Seeds" onViewAll={() => navigate('/explore/category/seeds')} />
           <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
             {bestSellerSeeds.map(item => <BestSellerCard key={item.id} item={item} />)}
           </div>
@@ -727,7 +727,7 @@ export default function Home() {
       {/* ── Best Sellers in Crop Protection ──────────────────── */}
       <div className="w-full bg-white border-y border-gray-100">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-          <SectionHeader title="Best Sellers in Crop Protection" onViewAll={() => navigate('/category/crop-protection')} />
+          <SectionHeader title="Best Sellers in Crop Protection" onViewAll={() => navigate('/explore/category/crop-protection')} />
           <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
             {bestSellerCropProtection.map(item => <BestSellerCard key={item.id} item={item} />)}
           </div>
@@ -745,7 +745,7 @@ export default function Home() {
       {/* ── Best Sellers in Crop Nutrition ───────────────────── */}
       <div className="w-full bg-[#EEF6FF] border-y border-[#BDD9F7]">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-          <SectionHeader title="Best Sellers in Crop Nutrition" onViewAll={() => navigate('/category/crop-nutrition')} />
+          <SectionHeader title="Best Sellers in Crop Nutrition" onViewAll={() => navigate('/explore/category/crop-nutrition')} />
           <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
             {bestSellerCropNutrition.map(item => <BestSellerCard key={item.id} item={item} />)}
           </div>
@@ -763,7 +763,7 @@ export default function Home() {
       {/* ── Best Sellers in Farm Tools ────────────────────────── */}
       <div className="w-full bg-[#FFF8EC] border-y border-[#FFD98E]">
         <div className="max-w-[1400px] mx-auto px-4 py-5">
-          <SectionHeader title="Best Sellers in Farm Tools" onViewAll={() => navigate('/category/farm-tools')} />
+          <SectionHeader title="Best Sellers in Farm Tools" onViewAll={() => navigate('/explore/category/farm-tools')} />
           <div className="hidden md:grid md:grid-cols-4 lg:grid-cols-6 gap-4">
             {bestSellerFarmTools.map(item => <BestSellerCard key={item.id} item={item} />)}
           </div>
