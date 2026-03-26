@@ -263,7 +263,7 @@ export default function ExploreLanding({ title = 'Browse All', products = ALL_PR
   const toggleWishlist = id => setWishlist(p => { const n = new Set(p); n.has(id) ? n.delete(id) : n.add(id); return n })
 
   const filtered = useMemo(() => {
-    let list = [...ALL_PRODUCTS]
+    let list = [...products]
     if (filters.inStockOnly)        list = list.filter(p => p.inStock)
     if (filters.brands.length)      list = list.filter(p => filters.brands.includes(p.brand))
     if (filters.crops.length)       list = list.filter((_, i) => i % 2 === 0)
@@ -290,7 +290,7 @@ export default function ExploreLanding({ title = 'Browse All', products = ALL_PR
       <nav className="flex items-center gap-1.5 text-xs text-gray-500 py-3 px-4 max-w-[1400px] mx-auto w-full">
         <button onClick={() => navigate('/')} className="hover:underline" style={{ color: C.primary }}>Home</button>
         <ChevronRight size={12} className="text-gray-400" />
-        <span className="font-medium text-gray-700">Browse All</span>
+        <span className="font-medium text-gray-700">{title}</span>
       </nav>
 
       {/* ── Body ────────────────────────────────────────── */}
@@ -308,7 +308,9 @@ export default function ExploreLanding({ title = 'Browse All', products = ALL_PR
           {/* ── Toolbar ─────────────────────────────── */}
           <div className="flex items-center justify-between mb-3 gap-3 flex-wrap">
             <p className="text-sm text-gray-500">
-              Showing <span className="font-bold text-gray-800">{filtered.length}</span> products
+              <span className="font-semibold text-gray-800">{title}</span>
+              <span className="mx-1 text-gray-300">·</span>
+              <span className="font-bold text-gray-800">{filtered.length}</span> products
             </p>
             <div className="flex items-center gap-2">
               <button onClick={() => setDrawerOpen(true)}
