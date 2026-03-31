@@ -17,6 +17,7 @@ import TrendingPage        from "../pages/TrendingPage";
 import RecentlyViewedPage  from "../pages/RecentlyViewedPage";
 import Wishlist            from "../pages/WishList";
 import SocialMedia         from "../pages/SocialMedia";
+import AddressBook         from "../pages/AddressBook";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -40,6 +41,7 @@ const AppRoutes = () => {
         {/* category: /explore/category/seeds */}
         {/* crop:     /explore/crop/tomato     */}
         {/* brand:    /explore/brand/bayer     */}
+        <Route path="/addresses"          element={<AddressBook />} />
         <Route path="/wishlist"                   element={<Wishlist />} />
         <Route path="/social-media"               element={<SocialMedia />} />
         <Route path="/explore"                    element={<ExploreLanding />} />
