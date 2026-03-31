@@ -70,6 +70,8 @@ export default defineConfig(({ mode }) => {
     ],
     server: {
       port: current.port,
+      host: true,
+      allowedHosts: true
     },
     // publicDir: appTarget === 'seller' ? 'seller-public' : 'public',
     base: process.env.VITE_BASE_PATH || '/',

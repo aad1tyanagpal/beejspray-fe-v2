@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleWishlist as toggleWishlistAction } from '../../../features/wishlist/wishlistSlice'
 import { ChevronLeft, ChevronRight, ChevronDown, ShoppingCart, Heart, Star, Tag, BadgeCheck, Truck, Wallet } from 'lucide-react'
 import { C, T } from '../theme'
 
@@ -369,7 +371,9 @@ function MachineryRentalCard({ item }) {
 export default function Home() {
   const navigate = useNavigate()
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [wishlist, setWishlist]         = useState(new Set())
+  const dispatch      = useDispatch()
+  const wishlistItems = useSelector(s => s.wishlist.items)
+  const wishlist      = useMemo(() => new Set(wishlistItems.map(i => i.id)), [wishlistItems])
   const [selectedSizes, setSelectedSizes] = useState({})
 
   const touchStartX   = useRef(null)
@@ -413,7 +417,11 @@ export default function Home() {
     return () => clearInterval(t)
   }, [])
 
-  const toggleWishlist  = (id) => setWishlist(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n })
+  const toggleWishlist = (id) => {
+    const allProducts = [...trendingProducts, ...recentlyViewed]
+    const product = allProducts.find(p => p.id === id)
+    if (product) dispatch(toggleWishlistAction(product))
+  }
   const handleSizeChange = (id, size) => setSelectedSizes(prev => ({ ...prev, [id]: size }))
 
   return (

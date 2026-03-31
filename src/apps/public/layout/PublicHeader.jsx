@@ -395,10 +395,10 @@ return (
               )}
             </div>
 
-            {/* Kisaan Vani */}
-            <button onClick={() => navigate('/kisaan-vani')} className={T.navItem}>
+            {/* Social Media */}
+            <button onClick={() => navigate('/social-media')} className={T.navItem}>
               <Sprout size={22} style={{ color: C.headerNavHover }} />
-              <span className="text-[12px] font-medium mt-0.5" style={{ color: C.headerNavHover }}>Kisaan Vani</span>
+              <span className="text-[12px] font-medium mt-0.5" style={{ color: C.headerNavHover }}>Social Media</span>
             </button>
 
             {/* Wishlist */}
@@ -528,9 +528,9 @@ return (
           </svg>
           <span className="text-[10px] font-semibold" style={{ color: C.gray700 }}>Home</span>
         </button>
-        <button onClick={() => navigate('/kisaan-vani')} className="flex-1 flex flex-col items-center justify-center py-2 gap-0.5">
+        <button onClick={() => navigate('/social-media')} className="flex-1 flex flex-col items-center justify-center py-2 gap-0.5">
           <Sprout size={22} style={{ color: C.primary }} />
-          <span className="text-[10px] font-semibold" style={{ color: C.primary }}>Kisaan Vani</span>
+          <span className="text-[10px] font-semibold" style={{ color: C.primary }}>Social Media</span>
         </button>
         <button onClick={() => navigate('/wishlist')} className="flex-1 flex flex-col items-center justify-center py-2 gap-0.5">
           <Heart size={22} style={{ color: C.gray700 }} />

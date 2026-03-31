@@ -1,5 +1,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleWishlist as toggleWishlistAction } from '../../../features/wishlist/wishlistSlice'
 import { Heart, ChevronRight, ChevronDown, SlidersHorizontal, X, Star, ShoppingCart, LayoutGrid, List } from 'lucide-react'
 import { C, T } from '../theme'
 import FilterSidebar, {
@@ -321,8 +323,10 @@ export default function ExplorePage() {
     setFilters({ ...DEFAULT_FILTERS })
     setSort('popular')
   }, [type, slug])
+  const dispatch      = useDispatch()
+  const wishlistItems = useSelector(s => s.wishlist.items)
+  const wishlist      = useMemo(() => new Set(wishlistItems.map(i => i.id)), [wishlistItems])
   const [viewType,   setViewType]  = useState('card')   // 'card' | 'list'
-  const [wishlist,   setWishlist]  = useState(new Set())
   const [drawerOpen, setDrawerOpen]= useState(false)
 
   // For category circles — active circle tracks subcats filter
@@ -341,7 +345,10 @@ export default function ExplorePage() {
     }
   }
 
-  const toggleWishlist = id => setWishlist(p => { const n = new Set(p); n.has(id) ? n.delete(id) : n.add(id); return n })
+  const toggleWishlist = id => {
+    const product = products.find(p => p.id === id)
+    if (product) dispatch(toggleWishlistAction(product))
+  }
 
   const products = useMemo(() => genProducts(slug, pageLabel), [slug, pageLabel])
 

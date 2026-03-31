@@ -1,5 +1,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleWishlist as toggleWishlistAction } from '../../../features/wishlist/wishlistSlice'
 import { Heart, ChevronRight, ChevronDown, SlidersHorizontal, X, Star, ShoppingCart, LayoutGrid, List } from 'lucide-react'
 import { C, T } from '../theme'
 import FilterSidebar, {
@@ -257,10 +259,15 @@ export default function ExploreLanding({ title = 'Browse All', products = ALL_PR
   const [filters,    setFilters]    = useState({ ...DEFAULT_FILTERS })
   const [sort,       setSort]       = useState('popular')
   const [viewType,   setViewType]   = useState('card')
-  const [wishlist,   setWishlist]   = useState(new Set())
+  const dispatch      = useDispatch()
+  const wishlistItems = useSelector(s => s.wishlist.items)
+  const wishlist      = useMemo(() => new Set(wishlistItems.map(i => i.id)), [wishlistItems])
   const [drawerOpen, setDrawerOpen] = useState(false)
 
-  const toggleWishlist = id => setWishlist(p => { const n = new Set(p); n.has(id) ? n.delete(id) : n.add(id); return n })
+  const toggleWishlist = id => {
+    const product = products.find(p => p.id === id)
+    if (product) dispatch(toggleWishlistAction(product))
+  }
 
   const filtered = useMemo(() => {
     let list = [...products]

@@ -15,6 +15,8 @@ import ExplorePage  from "../pages/ExplorePage";
 import ExploreLanding      from "../pages/ExploreLanding";
 import TrendingPage        from "../pages/TrendingPage";
 import RecentlyViewedPage  from "../pages/RecentlyViewedPage";
+import Wishlist            from "../pages/WishList";
+import SocialMedia         from "../pages/SocialMedia";
 
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -38,6 +40,8 @@ const AppRoutes = () => {
         {/* category: /explore/category/seeds */}
         {/* crop:     /explore/crop/tomato     */}
         {/* brand:    /explore/brand/bayer     */}
+        <Route path="/wishlist"                   element={<Wishlist />} />
+        <Route path="/social-media"               element={<SocialMedia />} />
         <Route path="/explore"                    element={<ExploreLanding />} />
         <Route path="/products/trending"          element={<TrendingPage />} />
         <Route path="/account/recently-viewed"   element={<RecentlyViewedPage />} />
