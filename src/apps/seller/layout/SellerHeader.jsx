@@ -9,7 +9,7 @@ const SellerHeader = () => {
       {/* Logo */}
       <span
         className="text-lg font-bold text-green-700 cursor-pointer select-none"
-        onClick={() => navigate('/')}
+        onClick={() => navigate('/dashboard')}
       >
         🌾 BJ Spray Seller
       </span>
