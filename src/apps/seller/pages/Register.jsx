@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import {
   Eye, EyeOff, ArrowLeft, ChevronRight, UploadCloud,
   Check, Phone, Lock, Clock, MapPin, Banknote, FileText,
-  Building2, CheckCircle2, ShieldCheck, LogOut
+  Building2, CheckCircle2, ShieldCheck, LogOut, Headphones,
+  MessageCircle, X
 } from 'lucide-react'
 import { colors } from '../theme'
 
@@ -295,18 +296,107 @@ function StepsPanel({ currentIdx, phone }) {
 
 // Mobile top progress bar
 function MobileBar({ currentIdx }) {
+  const step = ALL_STEPS[currentIdx]
+  const StepIcon = step?.icon
   return (
-    <div className="md:hidden flex items-center gap-1 px-4 py-2.5"
+    <div className="md:hidden flex flex-col"
       style={{ backgroundColor: colors.primary }}>
-      {ALL_STEPS.map((_, i) => (
-        <div key={i} className="flex-1 h-1 rounded-full transition-all"
-          style={{ backgroundColor: i <= currentIdx ? '#fff' : 'rgba(255,255,255,0.25)' }} />
-      ))}
+
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 pt-4 pb-2">
+        <div className="flex items-center gap-2">
+          <span className="text-lg">🌾</span>
+          <div>
+            <p className="font-extrabold text-sm text-white leading-none">Beej Spray</p>
+            <p className="text-[9px] tracking-widest" style={{ color: 'rgba(255,255,255,0.5)' }}>SELLER HUB</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Progress segments */}
+      <div className="flex items-center gap-1 px-4 pt-1 pb-2">
+        {ALL_STEPS.map((_, i) => (
+          <div key={i} className="flex-1 h-1 rounded-full transition-all"
+            style={{ backgroundColor: i <= currentIdx ? '#fff' : 'rgba(255,255,255,0.25)' }} />
+        ))}
+      </div>
+
+      {/* Step label row */}
+      <div className="flex items-center justify-between px-4 pb-3">
+        <div className="flex items-center gap-2">
+          {StepIcon && (
+            <StepIcon size={14} style={{ color: 'rgba(255,255,255,0.85)' }} />
+          )}
+          <span className="text-sm font-semibold text-white">
+            {step?.label}
+          </span>
+        </div>
+        <span className="text-xs" style={{ color: 'rgba(255,255,255,0.55)' }}>
+          Step {currentIdx + 1} of {ALL_STEPS.length}
+        </span>
+      </div>
     </div>
   )
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
+
+function AssistanceButton() {
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      {/* Popup */}
+      {open && (
+        <div className="fixed bottom-24 right-5 z-50 w-72 rounded-2xl shadow-2xl border overflow-hidden"
+          style={{ backgroundColor: '#fff', borderColor: colors.border }}>
+          {/* Header */}
+          <div className="flex items-center justify-between px-4 py-3"
+            style={{ backgroundColor: colors.primary }}>
+            <div className="flex items-center gap-2">
+              <Headphones size={16} color="#fff" />
+              <span className="text-sm font-bold text-white">Need Help?</span>
+            </div>
+            <button onClick={() => setOpen(false)}>
+              <X size={15} color="rgba(255,255,255,0.8)" />
+            </button>
+          </div>
+          {/* Options */}
+          <div className="p-3 space-y-2">
+            {[
+              { icon: MessageCircle, label: 'Chat with us', sub: 'Instant replies on WhatsApp' },
+              { icon: Phone,         label: 'Call Support', sub: 'Mon–Sat, 9 AM – 6 PM' },
+            ].map(({ icon: Icon, label, sub }) => (
+              <button key={label}
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition hover:opacity-80"
+                style={{ backgroundColor: colors.primaryLight }}>
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: colors.primary }}>
+                  <Icon size={14} color="#fff" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold" style={{ color: colors.textPrimary }}>{label}</p>
+                  <p className="text-xs" style={{ color: colors.textSecondary }}>{sub}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+          <p className="text-center text-xs pb-3" style={{ color: colors.textMuted }}>
+            We typically reply within a few minutes
+          </p>
+        </div>
+      )}
+
+      {/* FAB */}
+      <button onClick={() => setOpen(o => !o)}
+        className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-transform active:scale-95"
+        style={{ backgroundColor: colors.primary }}>
+        {open
+          ? <X size={20} color="#fff" />
+          : <Headphones size={20} color="#fff" />}
+      </button>
+    </>
+  )
+}
 
 export default function Register() {
   const navigate = useNavigate()
@@ -587,6 +677,7 @@ export default function Register() {
           </div>
         </div>
       </div>
+      <AssistanceButton />
     </div>
   )
 }
